@@ -8,17 +8,18 @@ import LoginLayout from 'layouts/LoginLayout';
 import DashboardLayout from 'layouts/DashboardLayout';
 
 import Customer from './customer';
+import Landing from './client/Landing';
 
 import { LightTheme } from 'resource/themes';
 
 const routes: SecurableRoute[] = [
   {
     index: true,
-    element: <Navigate to="/customer" />,
+    element: <Navigate to="/register" />,
   },
   {
-    path: 'customer',
-    element: <Customer />,
+    path: '/register',
+    element: <Landing />,
   },
 
   {
