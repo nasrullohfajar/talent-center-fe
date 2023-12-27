@@ -1,14 +1,14 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button, IconButton, Box } from '@mui/material';
-import logotujuhsembilan from '../assets/image/logotujuhsembilan.svg';
-import { useIsMobile } from "utils/utils";
+import logotujuhsembilan from '../../assets/image/logotujuhsembilan.svg';
+import { useIsMobile } from "../../utils/utils";
 
-const Navbar = () => {
+const Navbar = ({ content, bgColor, hasBg }) => {
     const isMobile = useIsMobile();
 
     return (
         <Box sx={{ position: 'fixed', width: '100%', zIndex: 99 }}>
-            <AppBar position="static" sx={{ background: 'none', boxShadow: 'none', paddingX: '20px', paddingY: '10px' }}>
+            <AppBar position="static" sx={{ background: hasBg, backgroundColor: bgColor, boxShadow: 'none', paddingX: '20px', paddingY: '10px' }}>
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton edge="start" color="inherit" aria-label="menu">
@@ -19,13 +19,10 @@ const Navbar = () => {
                         </Typography>
                     </Box>
 
-                    <Box sx={{ display: 'flex', gap: '10px' }}>
-                        <Button color="inherit" sx={{ borderRadius: '25px', paddingX: '20px', paddingY: '7px', fontSize: '14px', textTransform: 'capitalize' }}>Register</Button>
-                        <Button color="inherit" sx={{ borderRadius: '25px', border: '1px solid white', paddingX: '20px', paddingY: '7px', fontSize: '14px', textTransform: 'capitalize' }}>Sign In</Button>
-                    </Box>
+                    {content}
                 </Toolbar>
             </AppBar>
-        </Box>
+        </Box >
     );
 }
 

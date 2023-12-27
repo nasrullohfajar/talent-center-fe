@@ -1,12 +1,13 @@
 import React from "react";
 import { Box } from '@mui/material';
-import Navbar from "component/Navbar";
+import Navbar from "../../component/ui/Navbar";
 import bgLanding from "../../assets/image/bg-landingPage.svg"
+import ButtonLanding from "../../component/ui/ButtonLanding"
 
 const Landing = () => {
     return (
         <Box sx={{ position: 'relative', minHeight: '100vh' }}>
-            <Navbar sx={{ position: 'fixed', width: '100%' }} />
+            <Navbar hasBg={'none'} content={<ButtonLanding />} sx={{ position: 'fixed', width: '100%' }} />
             <Box
                 sx={{
                     position: 'relative',
