@@ -14,7 +14,7 @@ const Info = () => {
         <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'start', justifyContent: 'center', height: '100%', backgroundColor: '#142B51', color: 'white', paddingY: '50px', paddingX: isMobile ? '50px' : '450px', gap: '10px' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px', width: '500px' }}>
                 <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '16px', fontWeight: '700' }}>Useful Link</Typography>
-                <div class="underline-component"></div>
+                <div className="underline-component"></div>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
                     <Typography variant="h6" component={Link} to="/register" sx={{ fontFamily: 'Inter, sans-serif', fontSize: 'small', fontWeight: '400', color: 'white', textDecoration: 'none' }} className="text">Home</Typography>
                     <Typography variant="h6" component={Link} to="/register" sx={{ fontFamily: 'Inter, sans-serif', fontSize: 'small', fontWeight: '400', color: 'white', textDecoration: 'none' }} className="text">Our Technologies</Typography>
@@ -25,7 +25,7 @@ const Info = () => {
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '2px', width: '500px' }}>
                 <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '16px', fontWeight: '700' }}>Contact Us</Typography>
-                <div class="underline-component"></div>
+                <div className="underline-component"></div>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
                     <Typography variant="h6" sx={{ fontFamily: 'Inter, sans-serif', fontSize: 'small', fontWeight: '400', color: 'white', textDecoration: 'none' }} className="text">
                         <span style={{ fontWeight: '700' }}>Address: </span>

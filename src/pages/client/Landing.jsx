@@ -1,10 +1,11 @@
 import React from "react";
 import { Box } from '@mui/material';
 import Navbar from "../../component/layout/Navbar";
-import bgLanding from "../../assets/image/bg-landingPage.svg";
+import bgLanding from "../../assets/image/bg-landingPage.png";
 import ButtonLanding from "../../component/landing/ButtonLanding";
 import Footer from "../../component/layout/Footer";
 import Info from "../../component/layout/Info"
+import Content from "../../component/landing/Content"
 
 const Landing = () => {
     return (
@@ -18,25 +19,14 @@ const Landing = () => {
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         minHeight: 'calc(100vh - 64px)', // fullscreen - navbar
-                        paddingTop: '64px',
-
-                        //overay : membuat bg gelap
-                        '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '100%',
-                            background: 'rgba(0, 0, 0, 0.7)',
-                        },
                     }}
                 >
+                    <Content />
                 </Box>
             </Box>
             <Info />
             <Footer />
-        </>
+        </ >
     );
 }
 
