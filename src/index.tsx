@@ -9,7 +9,6 @@ import { HelloWorldErrorPage } from '@astarx-studio/mui/prefabs/errors';
 
 import routes from 'pages/_routes';
 
-import { DarkTheme, LightTheme } from 'resource/themes';
 
 const root = ReactDOM.createRoot(document.getElementById('app-root') as HTMLElement);
 root.render(
@@ -19,13 +18,6 @@ root.render(
     routed={{
       routes,
       welcomePage: <HelloWorldErrorPage />,
-    }}
-    themed={{
-      themeProvider: ({ theme, children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>,
-      defaultTheme: {
-        light: LightTheme,
-        dark: DarkTheme,
-      },
     }}
   />
 );
