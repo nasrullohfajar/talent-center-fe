@@ -1,9 +1,10 @@
 import React from "react";
 import { Box } from '@mui/material';
-import Navbar from "../../component/ui/Navbar";
+import Navbar from "../../component/layout/Navbar";
 import bgLanding from "../../assets/image/bg-landingPage.svg";
-import ButtonLanding from "../../component/ui/ButtonLanding";
-import Footer from "../../component/ui/Footer";
+import ButtonLanding from "../../component/landing/ButtonLanding";
+import Footer from "../../component/layout/Footer";
+import Info from "../../component/layout/Info"
 
 const Landing = () => {
     return (
@@ -33,6 +34,7 @@ const Landing = () => {
                 >
                 </Box>
             </Box>
+            <Info />
             <Footer />
         </>
     );

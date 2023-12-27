@@ -11,10 +11,8 @@ const Navbar = ({ content, bgColor, hasBg }) => {
             <AppBar position="static" sx={{ background: hasBg, backgroundColor: bgColor, boxShadow: 'none', paddingX: '20px', paddingY: '10px' }}>
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconButton edge="start" color="inherit" aria-label="menu">
-                            <img src={logotujuhsembilan} alt="Logo" style={{ width: '50px' }} />
-                        </IconButton>
-                        <Typography variant="h6" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', fontWeight: '700', marginLeft: '5px', display: isMobile ? 'none' : 'block' }}>
+                        <img src={logotujuhsembilan} alt="Logo" style={{ width: '50px' }} />
+                        <Typography variant="h6" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', fontWeight: '700', marginLeft: '10px', display: isMobile ? 'none' : 'block' }}>
                             Talent Center 79
                         </Typography>
                     </Box>

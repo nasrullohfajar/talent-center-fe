@@ -9,3 +9,20 @@ code {
   font-family: 'Fira Code', monospace;
   font-feature-settings: 'calt', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08';
 }
+
+.underline-component {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  align-content: start;
+}
+
+.underline-component::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #FF6E1D;
+}
