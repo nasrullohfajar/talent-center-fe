@@ -50,7 +50,7 @@ const Navbar = ({ content, bgColor, hasBg }) => {
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <img src={logotujuhsembilan} alt="Logo" style={{ width: '50px' }} />
-                        <Typography variant="h6" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', fontWeight: '700', ml: '10px' }}>
+                        <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', fontWeight: '700', ml: '10px' }}>
                             Talent Center 79
                         </Typography>
                     </Box>
