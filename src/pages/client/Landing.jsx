@@ -21,7 +21,7 @@ const Landing = () => {
                         minHeight: 'calc(100vh - 64px)', // fullscreen - navbar
                     }}
                 >
-                    <Content />
+                    {/* <Content /> */}
                 </Box>
             </Box>
             <Info />
