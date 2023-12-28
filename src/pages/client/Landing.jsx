@@ -6,8 +6,12 @@ import ButtonLanding from "../../component/landing/ButtonLanding";
 import Footer from "../../component/layout/Footer";
 import Info from "../../component/layout/Info"
 import Content from "../../component/landing/Content"
+import { useIsMobile } from "../../utils/utils"
 
 const Landing = () => {
+
+    const isMobile = useIsMobile();
+
     return (
         <>
             <Box sx={{ position: 'relative', minHeight: '100vh' }}>
@@ -17,11 +21,11 @@ const Landing = () => {
                         position: 'relative',
                         backgroundImage: `url(${bgLanding})`,
                         backgroundSize: 'cover',
-                        backgroundPosition: 'center',
+                        backgroundPosition: isMobile ? 'left center' : 'center',
                         minHeight: 'calc(100vh - 64px)', // fullscreen - navbar
                     }}
                 >
-                    {/* <Content /> */}
+                    <Content />
                 </Box>
             </Box>
             <Info />

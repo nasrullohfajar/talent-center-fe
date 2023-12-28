@@ -51,7 +51,7 @@ const Info = () => {
                         </IconButton>
                     </Box>
                     <Box>
-                        <img src={logotujuhsembilan2} alt="Logo" style={{ width: '180px', marginTop: '5px' }} />
+                        <img src={logotujuhsembilan2} alt="Logo" style={{ width: isMobile ? '120px' : '180px', marginTop: '5px' }} />
                     </Box>
                 </Box>
             </Box>

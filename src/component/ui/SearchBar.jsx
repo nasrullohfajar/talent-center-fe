@@ -13,7 +13,7 @@ const SearchBar = () => {
     };
 
     return (
-        <Paper component="form" sx={{ display: 'flex', alignItems: 'center', width: isMobile ? 300 : 600, borderRadius: '30px' }}>
+        <Paper component="form" sx={{ display: 'flex', alignItems: 'center', width: isMobile ? '80% ' : 600, borderRadius: '30px' }}>
             <TextField
                 fullWidth
                 placeholder='   Try "Javascript"'
