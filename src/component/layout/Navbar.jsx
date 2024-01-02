@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useIsMobile } from "../../utils/utils";
 import logotujuhsembilan from "../../assets/image/logotujuhsembilan.svg";
-import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, Button, Box } from "@mui/material";
+import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, Button, Box, Modal } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import ModalSignIn from "component/ui/ModalSignIn";
 
 
 const Navbar = ({ content, bgColor, hasBg }) => {
     const isMobile = useIsMobile();
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [signInModalOpen, setSignInModalOpen] = useState(false);
 
     const handleDrawerOpen = () => {
         setDrawerOpen(true);
@@ -16,6 +18,14 @@ const Navbar = ({ content, bgColor, hasBg }) => {
 
     const handleDrawerClose = () => {
         setDrawerOpen(false);
+    };
+
+    const handleSignInClick = () => {
+        setSignInModalOpen(true);
+    };
+
+    const handleSignInModalClose = () => {
+        setSignInModalOpen(false);
     };
 
     const renderMobileMenu = () => (
@@ -45,28 +55,49 @@ const Navbar = ({ content, bgColor, hasBg }) => {
     );
 
     return (
-        <Box sx={{ position: 'fixed', width: '100%', zIndex: 99 }}>
-            <AppBar position="static" sx={{ background: hasBg, bgcolor: bgColor, boxShadow: 'none', py: '10px', px: '10px' }}>
-                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <img src={logotujuhsembilan} alt="Logo" style={{ width: '50px' }} />
-                        <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', fontWeight: '700', ml: '10px' }}>
-                            Talent Center 79
-                        </Typography>
-                    </Box>
-
-                    {isMobile && (
-                        <Box sx={{ display: "flex", alignItems: "center", ml: "auto" }}>
-                            <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerOpen}>
-                                <MenuIcon />
-                            </IconButton>
+        <>
+            <Box sx={{ position: 'fixed', width: '100%', zIndex: 99 }}>
+                <AppBar position="static" sx={{ background: hasBg, bgcolor: bgColor, boxShadow: 'none', py: '10px', px: '10px' }}>
+                    <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            <img src={logotujuhsembilan} alt="Logo" style={{ width: '50px' }} />
+                            <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', fontWeight: '700', ml: '10px' }}>
+                                Talent Center 79
+                            </Typography>
                         </Box>
-                    )}
 
-                    {isMobile ? renderMobileMenu() : <Box sx={{ display: "flex", alignItems: "center", ml: "auto" }}>{content}</Box>}
-                </Toolbar>
-            </AppBar>
-        </Box>
+                        {isMobile && (
+                            <Box sx={{ display: "flex", alignItems: "center", ml: "auto" }}>
+                                <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerOpen}>
+                                    <MenuIcon />
+                                </IconButton>
+                            </Box>
+                        )}
+
+                        {isMobile ? renderMobileMenu() :
+                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                                <Box sx={{ display: 'flex', gap: '10px' }}>
+                                    <Button color="inherit" variant="text" sx={{ borderRadius: '25px', paddingX: '20px', paddingY: '7px', fontSize: '14px', textTransform: 'capitalize', fontFamily: 'Inter, sans-serif' }}>Register</Button>
+                                    <Button
+                                        color="inherit"
+                                        variant="text"
+                                        sx={{ borderRadius: '25px', border: '1px solid white', paddingX: '20px', paddingY: '7px', fontSize: '14px', textTransform: 'capitalize', fontFamily: 'Inter, sans-serif' }}
+                                        onClick={() => {
+                                            handleSignInClick();
+                                        }}
+                                    >Sign In
+                                    </Button>
+                                </Box>
+                            </Box>}
+                    </Toolbar>
+                </AppBar>
+
+                <ModalSignIn
+                    open={signInModalOpen}
+                    handleClose={handleSignInModalClose}
+                />
+            </Box>
+        </>
     );
 };
 
