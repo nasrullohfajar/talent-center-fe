@@ -18,7 +18,7 @@
     "@types/node-jose": "^1.1.10",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "axios": "^0.27.2",
+    "axios": "^1.6.4",
     "crypto-js": "^4.1.1",
     "node-jose": "^2.1.1",
     "react": "^18.2.0",

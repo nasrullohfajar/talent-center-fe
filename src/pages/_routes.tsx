@@ -3,15 +3,16 @@ import { ThemeProvider } from '@mui/material';
 import { SecurableRoute } from '@astarx-studio/react-core/router';
 
 import Landing from '../pages/client/Landing';
+import Home from '../pages/client/Home';
 
 const routes: SecurableRoute[] = [
   {
     index: true,
-    element: <Navigate to="/register" />,
+    element: <Landing />,
   },
   {
-    path: '/register',
-    element: <Landing />,
+    path: '/home',
+    element: <Home />,
   },
 ];
 
