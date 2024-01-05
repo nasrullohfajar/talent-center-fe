@@ -49,13 +49,25 @@ const Navbar = ({ bgColor, hasBg }) => {
 
                 <List>
                     <ListItem sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mx: 'auto' }}>
-                        <Button color="inherit" onClick={handleDrawerClose} sx={{ borderRadius: '25px', px: '20px', py: '7px', fontSize: '14px', textTransform: 'capitalize', fontFamily: 'Inter, sans-serif', color: 'white' }}>
+                        <Button
+                            color="inherit"
+                            onClick={() => {
+                                handleModalRegisterOpen();
+                                handleDrawerClose();
+                            }}
+                            sx={{ borderRadius: '25px', px: '20px', py: '7px', fontSize: '14px', textTransform: 'capitalize', fontFamily: 'Inter, sans-serif', color: 'white' }}>
                             Register
                         </Button>
                     </ListItem>
 
                     <ListItem sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mx: 'auto' }}>
-                        <Button color="inherit" onClick={handleDrawerClose} sx={{ borderRadius: '25px', border: '1px solid white', px: '20px', py: '7px', fontSize: '14px', textTransform: 'capitalize', fontFamily: 'Inter, sans-serif', color: 'white' }}>
+                        <Button
+                            color="inherit"
+                            onClick={() => {
+                                handleModalSignInOpen();
+                                handleDrawerClose();
+                            }}
+                            sx={{ borderRadius: '25px', border: '1px solid white', px: '20px', py: '7px', fontSize: '14px', textTransform: 'capitalize', fontFamily: 'Inter, sans-serif', color: 'white' }}>
                             Sign In
                         </Button>
                     </ListItem>
