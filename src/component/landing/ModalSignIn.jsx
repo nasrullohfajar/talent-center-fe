@@ -6,7 +6,6 @@ import {
   Button,
   Box,
   Modal,
-  TextField,
   IconButton,
   InputAdornment,
   Link
@@ -212,8 +211,6 @@ const ModalSignIn = ({ open, handleClose }) => {
             </Box>
           </Modal>
       }
-
-
     </>
   );
 };

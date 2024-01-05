@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   Typography,
   Button,
   Box,
   Modal,
-  TextField,
   IconButton,
   InputAdornment,
   Link,
@@ -31,29 +31,20 @@ const ModalRegister = ({ open, handleClose }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState('');
   const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
-    gender: '',
-    dateofbirth: '',
-    clientposition: '',
-    agencyname: '',
-    agencyaddress: '',
+    sex: '',
+    birthdate: '1990-01-15',
+    clientPositionId: '',
+    agencyName: '',
+    agencyAddress: '',
   });
 
   const isMobile = useIsMobile();
   const clientPositions = [
-    { value: 'hrd', label: 'HRD (Human Resources Director)' },
-    { value: 'manager', label: 'Manager' },
-    { value: 'supervisor', label: 'Supervisor' },
-    { value: 'staff', label: 'Staff' },
-    { value: 'executive', label: 'Executive' },
-    { value: 'consultant', label: 'Consultant' },
-    { value: 'accountant', label: 'Accountant' },
-    { value: 'marketing', label: 'Marketing' },
-    { value: 'analyst', label: 'Analyst' },
-    { value: 'employee', label: 'Employee' },
+    { value: '22900d4a-1e68-4d09-8ef4-eb99614907d5', label: 'HRD (Human Resources Director)' },
   ];
 
   const handleTogglePasswordVisibility = () => {
@@ -96,11 +87,11 @@ const ModalRegister = ({ open, handleClose }) => {
         formError[key] = 'Kolom ini tidak boleh kosong';
       }
 
-      if ((key === 'firstname' || key === 'lastname' || key === 'agencyaddress') && formData[key].length > 3) {
+      if ((key === 'firstName' || key === 'lastName' || key === 'agencyAddress') && formData[key].length > 255) {
         formError[key] = lengthError255;
       }
 
-      if (key === 'agencyname' && formData[key].length > 3) {
+      if (key === 'agencyName' && formData[key].length > 100) {
         formError[key] = lengthError100;
       }
     });
@@ -109,20 +100,34 @@ const ModalRegister = ({ open, handleClose }) => {
     return Object.keys(formError).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (validateForm()) {
-      console.log('Signing up with', formData);
+      try {
+        const response = await axios.post('http://localhost:8081/user-management/users/register', {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          sex: formData.sex,
+          birthdate: formData.birthdate,
+          clientPositionId: formData.clientPositionId,
+          agencyName: formData.agencyName,
+          agencyAddress: formData.agencyAddress,
+        });
+      } catch (error) {
+        console.log("error")
+      }
+
       setFormData({
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
-        gender: '',
-        dateofbirth: '',
-        clientposition: '',
-        agencyname: '',
-        agencyaddress: '',
+        sex: '',
+        birthdate: '1990-01-15',
+        clientPositionId: '',
+        agencyName: '',
+        agencyAddress: '',
       });
       handleClose();
     }
@@ -173,11 +178,11 @@ const ModalRegister = ({ open, handleClose }) => {
         >
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <FormText label="First Name" name="firstname" value={formData.firstname} onChange={handleChange} error={errors.firstname} />
+              <FormText label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} error={errors.firstName} />
             </Grid>
 
             <Grid item xs={6}>
-              <FormText label="Last Name" name="lastname" value={formData.lastname} onChange={handleChange} error={errors.lastname} />
+              <FormText label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} error={errors.lastName} />
             </Grid>
           </Grid>
 
@@ -223,22 +228,22 @@ const ModalRegister = ({ open, handleClose }) => {
 
           <FormControl component="fieldset" sx={{ mt: 2 }}>
             <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup row aria-label="gender" name="gender" value={formData.gender} onChange={handleChange}>
+            <RadioGroup row aria-label="sex" name="sex" value={formData.sex} onChange={handleChange}>
               <FormControlLabel value="male" control={<Radio />} label="Male" />
               <FormControlLabel value="female" control={<Radio />} label="Female" />
             </RadioGroup>
           </FormControl>
 
           <FormControl fullWidth size="small" sx={{ mt: 2 }}>
-            <InputLabel id="clientposition">Client Position</InputLabel>
+            <InputLabel id="clientPositionId">Client Position</InputLabel>
             <Select
-              labelId="clientposition"
-              id="clientposition"
-              name="clientposition"
-              value={formData.clientposition}
+              labelId="clientPositionId"
+              id="clientPositionId"
+              name="clientPositionId"
+              value={formData.clientPositionId}
               onChange={handleChange}
               label="Client Position"
-              error={Boolean(errors.clientposition)}
+              error={Boolean(errors.clientPositionId)}
             >
               {clientPositions.map((position) => (
                 <MenuItem key={position.value} value={position.value}>
@@ -247,34 +252,20 @@ const ModalRegister = ({ open, handleClose }) => {
               ))}
             </Select>
             <Typography variant="caption" color="error">
-              {errors.clientposition}
+              {errors.clientPositionId}
             </Typography>
           </FormControl>
 
-          <FormText label="Agency Name" name="agencyname" value={formData.agencyname} onChange={handleChange} error={errors.agencyname} />
+          <FormText label="Agency Name" name="agencyName" value={formData.agencyName} onChange={handleChange} error={errors.agencyName} />
 
           <FormText
             label="Agency Address"
-            name="agencyaddress"
-            value={formData.agencyaddress}
+            name="agencyAddress"
+            value={formData.agencyAddress}
             onChange={handleChange}
-            error={errors.agencyaddress}
+            error={errors.agencyAddress}
             multiline
           />
-          {/* 
-          <TextField
-            label="Agency Address"
-            name="agencyaddress"
-            variant="outlined"
-            fullWidth
-            multiline
-            rows={4}
-            value={formData.agencyaddress}
-            onChange={handleChange}
-            size="small"
-            error={Boolean(errors.agencyaddress)}
-            helperText={errors.agencyaddress}
-          /> */}
 
           <Button
             variant="contained"
@@ -321,7 +312,6 @@ const ModalRegister = ({ open, handleClose }) => {
           <Link href="#" onClick={() => console.log('Navigate to registration page')} sx={{ textDecoration: 'none' }}>
             Sign In Here
           </Link>
-          .
         </Typography>
       </Box>
     </Modal>
