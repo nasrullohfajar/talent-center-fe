@@ -24,7 +24,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOffOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
 
 import { useIsMobile } from '../../utils/utils';
-import PasswordValidation from '../ui/PasswordValidation';
+import PasswordValidation from '../landing/PasswordValidation';
 import FormText from '../ui/FormText';
 
 const ModalRegister = ({ open, handleClose }) => {

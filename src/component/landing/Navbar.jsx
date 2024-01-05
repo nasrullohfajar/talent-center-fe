@@ -4,8 +4,8 @@ import logotujuhsembilan from "../../assets/image/logotujuhsembilan.svg";
 import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, Button, Box, Modal } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import ModalSignIn from "../ui/ModalSignIn";
-import ModalRegister from "../ui/ModalRegister"
+import ModalSignIn from "./ModalSignIn";
+import ModalRegister from "./ModalRegister"
 
 
 const Navbar = ({ bgColor, hasBg }) => {
