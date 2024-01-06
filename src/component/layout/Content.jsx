@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import SearchBar from "../landing/Searchbar"
+import SearchBar from "../ui/Searchbar"
 import Tag from "../ui/Tag"
-import { useIsMobile } from "../../utils/utils";
+import { useIsMobile } from "../../utils/functions";
 
 const Content = () => {
 

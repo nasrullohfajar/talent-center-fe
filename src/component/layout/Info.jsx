@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, IconButton } from "@mui/material";
-import { useIsMobile } from "../../utils/utils";
+import { useIsMobile } from "../../utils/functions";
 import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";

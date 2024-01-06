@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, InputAdornment, IconButton, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useIsMobile } from "../../utils/utils";
+import { useIsMobile } from "../../utils/functions";
 
 const SearchBar = () => {
 

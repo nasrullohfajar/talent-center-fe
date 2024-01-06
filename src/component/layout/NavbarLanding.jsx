@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useIsMobile } from "../../utils/utils";
+import { useIsMobile } from "../../utils/functions";
 import logotujuhsembilan from "../../assets/image/logotujuhsembilan.svg";
 import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, Button, Box, Modal } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import ModalSignIn from "./ModalSignIn";
-import ModalRegister from "./ModalRegister"
+import ModalSignIn from "../modal/ModalSignIn";
+import ModalRegister from "../modal/ModalRegister"
 
 
-const Navbar = ({ bgColor, hasBg }) => {
+const NavbarLanding = ({ bgColor, hasBg }) => {
     const isMobile = useIsMobile();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isModalSignInOpen, setIsModalSignInOpen] = useState(false);
@@ -138,4 +138,4 @@ const Navbar = ({ bgColor, hasBg }) => {
     );
 };
 
-export default Navbar;
+export default NavbarLanding;

@@ -1,13 +1,13 @@
 import React from "react";
 import { Box } from '@mui/material';
 
-import Navbar from "../../component/landing/Navbar";
+import NavbarLanding from "../../component/layout/NavbarLanding";
 import bgLanding from "../../assets/image/bg-landingPage.png";
-import Footer from "../../component/landing/Footer";
-import Info from "../../component/landing/Info"
-import Content from "../../component/landing/Content"
+import Footer from "../../component/layout/Footer";
+import Info from "../../component/layout/Info"
+import Content from "../../component/layout/Content"
 
-import { useIsMobile } from "../../utils/utils"
+import { useIsMobile } from "../../utils/functions"
 
 const Landing = () => {
 
@@ -16,7 +16,7 @@ const Landing = () => {
     return (
         <>
             <Box sx={{ position: 'relative', minHeight: '100vh' }}>
-                <Navbar hasBg={'none'} sx={{ position: 'fixed', width: '100%' }} />
+                <NavbarLanding hasBg={'none'} sx={{ position: 'fixed', width: '100%' }} />
                 <Box
                     sx={{
                         position: 'relative',

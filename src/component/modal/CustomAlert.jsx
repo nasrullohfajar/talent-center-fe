@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Modal, Typography, Fade } from '@mui/material';
 
-import { useIsMobile } from "../../utils/utils";
+import { useIsMobile } from "../../utils/functions";
 
 const CustomAlert = ({ open, type, message, onClose }) => {
 
