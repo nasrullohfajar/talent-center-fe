@@ -25,7 +25,7 @@ const Content = () => {
                 Talent Center 79
             </Typography>
 
-            <SearchBar />
+            <SearchBar width={isMobile ? '80% ' : 600} borderRadius={'30px'} />
 
             <Box sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '10px', alignItems: 'center', justifyContent: 'center' }}>
                 <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif', fontSize: 'small', fontWeight: '700', color: 'white', textDecoration: 'none' }} className="text">Popular</Typography>

@@ -3,17 +3,17 @@ import { TextField, InputAdornment, IconButton, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useIsMobile } from "../../utils/functions";
 
-const SearchBar = () => {
+const SearchBar = ({ width, height, borderRadius }) => {
 
     const isMobile = useIsMobile();
 
     const handleSearch = (event) => {
-        // Implement your search logic here
         console.log("Search query:", event.target.value);
     };
 
+
     return (
-        <Paper component="form" sx={{ display: 'flex', alignItems: 'center', width: isMobile ? '80% ' : 600, borderRadius: '30px' }}>
+        <Paper component="form" sx={{ display: 'flex', alignItems: 'center', width: width, borderRadius: borderRadius, height: height }}>
             <TextField
                 fullWidth
                 placeholder='   Try "Javascript"'

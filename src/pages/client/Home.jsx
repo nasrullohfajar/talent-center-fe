@@ -1,7 +1,10 @@
 import React from 'react';
+import NavbarMain from 'component/layout/NavbarMain';
 
 const Home = () => {
-  return <h1>home</h1>;
+  return (
+    <NavbarMain />
+  )
 };
 
 export default Home;
