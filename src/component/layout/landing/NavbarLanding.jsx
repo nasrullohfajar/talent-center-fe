@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useIsMobile } from "../../utils/functions";
-import logotujuhsembilan from "../../assets/image/logotujuhsembilan.svg";
+import { useIsMobile } from "../../../utils/functions";
+import logotujuhsembilan from "../../../assets/image/logotujuhsembilan.svg";
 import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, Button, Box } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import ModalSignIn from "../modal/ModalSignIn";
-import ModalRegister from "../modal/ModalRegister"
+import ModalSignIn from "../../modal/ModalSignIn";
+import ModalRegister from "../../modal/ModalRegister"
 
 
 const NavbarLanding = ({ bgColor, hasBg }) => {

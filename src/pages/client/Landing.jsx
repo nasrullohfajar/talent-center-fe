@@ -1,11 +1,11 @@
 import React from "react";
 import { Box } from '@mui/material';
 
-import NavbarLanding from "../../component/layout/NavbarLanding";
+import NavbarLanding from "../../component/layout/landing/NavbarLanding";
 import bgLanding from "../../assets/image/bg-landingPage.png";
-import Footer from "../../component/layout/Footer";
-import Info from "../../component/layout/Info"
-import Content from "../../component/layout/Content"
+import Footer from "../../component/layout/landing/FooterLanding";
+import Info from "../../component/layout/landing/InfoLanding"
+import Content from "../../component/layout/landing/ContentLanding"
 
 import { useIsMobile } from "../../utils/functions"
 

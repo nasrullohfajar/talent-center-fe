@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import SearchBar from "../ui/Searchbar"
-import Tag from "../ui/Tag"
-import { useIsMobile } from "../../utils/functions";
+import SearchBar from "../../ui/Searchbar"
+import Tag from "../../ui/Tag"
+import { useIsMobile } from "../../../utils/functions";
 
-const Content = () => {
+const ContentLanding = () => {
 
     const isMobile = useIsMobile();
 
@@ -14,7 +14,7 @@ const Content = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContentLanding: 'center',
                 height: '100vh',
                 gap: '50px',
             }}
@@ -45,4 +45,4 @@ const Content = () => {
     );
 }
 
-export default Content;
+export default ContentLanding;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import NavbarMain from 'component/layout/NavbarMain';
-import SidebarMain from 'component/layout/SidebarMain';
+import NavbarMain from 'component/layout/main/NavbarMain';
+import SidebarMain from 'component/layout/main/SidebarMain';
 
 const Home = () => {
   return (
@@ -16,6 +16,7 @@ const Home = () => {
           }}
         >
           <SidebarMain />
+
         </Box>
       </Box>
     </>

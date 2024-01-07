@@ -10,7 +10,7 @@ import {
     Button,
     Box
 } from "@mui/material";
-import logotujuhsembilan from "../../assets/image/logotujuhsembilan.svg";
+import logotujuhsembilan from "../../../assets/image/logotujuhsembilan.svg";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import BookmarkIcon from '@mui/icons-material/Bookmark';
@@ -19,7 +19,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 import SearchBar from "component/ui/Searchbar";
-import { useIsMobile } from "../../utils/functions";
+import { useIsMobile } from "../../../utils/functions";
 
 
 const NavbarMain = () => {

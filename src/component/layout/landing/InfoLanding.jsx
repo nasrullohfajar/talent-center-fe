@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Typography, IconButton } from "@mui/material";
-import { useIsMobile } from "../../utils/functions";
+import { useIsMobile } from "../../../utils/functions";
 import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import logotujuhsembilan2 from "../../assets/image/logotujuhsembilan2.svg";
+import logotujuhsembilan2 from "../../../assets/image/logotujuhsembilan2.svg";
 
-const Info = () => {
+const InfoLanding = () => {
     const isMobile = useIsMobile();
 
     return (
@@ -59,4 +59,4 @@ const Info = () => {
     )
 }
 
-export default Info;
+export default InfoLanding;

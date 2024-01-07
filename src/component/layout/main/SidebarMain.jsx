@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import FilterCheckbox from 'component/ui/FilterCheckbox';
-import FilterIcon from '../../assets/icon/filter.svg';
+import FilterIcon from '../../../assets/icon/filter.svg';
 
 const SidebarMain = () => {
   const positionSpec = [
