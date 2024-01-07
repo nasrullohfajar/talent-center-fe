@@ -45,9 +45,7 @@ const ModalRegister = ({ open, handleClose }) => {
   });
 
   const isMobile = useIsMobile();
-  const clientPositions = [
-    { value: '22900d4a-1e68-4d09-8ef4-eb99614907d5', label: 'HRD (Human Resources Director)' },
-  ];
+  const clientPositions = [{ value: '22900d4a-1e68-4d09-8ef4-eb99614907d5', label: 'HRD (Human Resources Director)' }];
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -105,7 +103,7 @@ const ModalRegister = ({ open, handleClose }) => {
   const handleSubmit = async () => {
     if (validateForm()) {
       try {
-        const response = await axios.post('http://localhost:8081/user-management/users/register', {
+        await axios.post('http://localhost:8081/user-management/users/register', {
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
@@ -117,7 +115,7 @@ const ModalRegister = ({ open, handleClose }) => {
           agencyAddress: formData.agencyAddress,
         });
       } catch (error) {
-        setIsAlert(true)
+        setIsAlert(true);
       }
 
       setFormData({
@@ -137,169 +135,151 @@ const ModalRegister = ({ open, handleClose }) => {
 
   useEffect(() => {
     if (isAlert && open) {
-      setIsAlert(false)
+      setIsAlert(false);
     }
-  }, [open]);
+  }, [open, isAlert]);
 
   return (
     <>
-      {
-        isAlert && !open ? <CustomAlert type={'error'} message={'Sign In Gagal'} open={true} /> :
-          <Modal open={open} onClose={handleClose}>
+      {isAlert && !open ? (
+        <CustomAlert type={'error'} message={'Sign In Gagal'} open={true} />
+      ) : (
+        <Modal open={open} onClose={handleClose}>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              bgcolor: 'white',
+              padding: '20px',
+              borderRadius: '8px',
+              outline: 'none',
+              width: isMobile ? '260px' : '370px',
+              p: '50px',
+              overflow: 'scroll',
+              height: '80%',
+            }}
+          >
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <IconButton onClick={handleClose} sx={{ p: '0' }}>
+                <CloseIcon sx={{ fontSize: '20px', color: '#848484' }} />
+              </IconButton>
+            </Box>
+
+            <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+              <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: '700', textAlign: 'center' }}>
+                Register
+              </Typography>
+              <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', textAlign: 'center', color: 'gray', mt: '5px' }}>
+                Register so you can choose and request our talent
+              </Typography>
+            </Box>
+
             <Box
               sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                bgcolor: 'white',
-                padding: '20px',
-                borderRadius: '8px',
-                outline: 'none',
-                width: isMobile ? '260px' : '370px',
-                p: '50px',
-                overflow: 'scroll',
-                height: '80%',
+                display: 'flex',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: '5px',
+                borderBottom: '1px solid #DBDBDB',
+                py: '20px',
               }}
             >
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <IconButton onClick={handleClose} sx={{ p: '0' }}>
-                  <CloseIcon sx={{ fontSize: '20px', color: '#848484' }} />
-                </IconButton>
-              </Box>
-
-              <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-                <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: '700', textAlign: 'center' }}>
-                  Register
-                </Typography>
-                <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', textAlign: 'center', color: 'gray', mt: '5px' }}>
-                  Register so you can choose and request our talent
-                </Typography>
-              </Box>
-
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  gap: '5px',
-                  borderBottom: '1px solid #DBDBDB',
-                  py: '20px',
-                }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    <FormText label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} error={errors.firstName} />
-                  </Grid>
-
-                  <Grid item xs={6}>
-                    <FormText label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} error={errors.lastName} />
-                  </Grid>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <FormText label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} error={errors.firstName} />
                 </Grid>
 
-                <FormText label="Email" name="email" value={formData.email} onChange={handleChange} error={errors.email} />
+                <Grid item xs={6}>
+                  <FormText label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} error={errors.lastName} />
+                </Grid>
+              </Grid>
 
-                <FormText
-                  label="Password"
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  value={formData.password}
+              <FormText label="Email" name="email" value={formData.email} onChange={handleChange} error={errors.email} />
+
+              <FormText
+                label="Password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                value={formData.password}
+                onChange={handleChange}
+                error={errors.password}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={handleTogglePasswordVisibility} edge="end">
+                        {showPassword ? <VisibilityOff sx={{ fontSize: '18px' }} /> : <Visibility sx={{ fontSize: '18px' }} />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
+              <PasswordValidation password={formData.password} />
+
+              <FormText
+                label="Type in your password again"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                value={formData.password}
+                onChange={handleChange}
+                error={errors.password}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={handleTogglePasswordVisibility} edge="end">
+                        {showPassword ? <VisibilityOff sx={{ fontSize: '18px' }} /> : <Visibility sx={{ fontSize: '18px' }} />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
+              <FormControl component="fieldset" sx={{ mt: 2 }}>
+                <FormLabel component="legend">Gender</FormLabel>
+                <RadioGroup row aria-label="sex" name="sex" value={formData.sex} onChange={handleChange}>
+                  <FormControlLabel value="male" control={<Radio />} label="Male" />
+                  <FormControlLabel value="female" control={<Radio />} label="Female" />
+                </RadioGroup>
+              </FormControl>
+
+              <FormControl fullWidth size="small" sx={{ mt: 2 }}>
+                <InputLabel id="clientPositionId">Client Position</InputLabel>
+                <Select
+                  labelId="clientPositionId"
+                  id="clientPositionId"
+                  name="clientPositionId"
+                  value={formData.clientPositionId}
                   onChange={handleChange}
-                  error={errors.password}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={handleTogglePasswordVisibility} edge="end">
-                          {showPassword ? <VisibilityOff sx={{ fontSize: '18px' }} /> : <Visibility sx={{ fontSize: '18px' }} />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-
-                <PasswordValidation password={formData.password} />
-
-                <FormText
-                  label="Type in your password again"
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  value={formData.password}
-                  onChange={handleChange}
-                  error={errors.password}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={handleTogglePasswordVisibility} edge="end">
-                          {showPassword ? <VisibilityOff sx={{ fontSize: '18px' }} /> : <Visibility sx={{ fontSize: '18px' }} />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-
-                <FormControl component="fieldset" sx={{ mt: 2 }}>
-                  <FormLabel component="legend">Gender</FormLabel>
-                  <RadioGroup row aria-label="sex" name="sex" value={formData.sex} onChange={handleChange}>
-                    <FormControlLabel value="male" control={<Radio />} label="Male" />
-                    <FormControlLabel value="female" control={<Radio />} label="Female" />
-                  </RadioGroup>
-                </FormControl>
-
-                <FormControl fullWidth size="small" sx={{ mt: 2 }}>
-                  <InputLabel id="clientPositionId">Client Position</InputLabel>
-                  <Select
-                    labelId="clientPositionId"
-                    id="clientPositionId"
-                    name="clientPositionId"
-                    value={formData.clientPositionId}
-                    onChange={handleChange}
-                    label="Client Position"
-                    error={Boolean(errors.clientPositionId)}
-                  >
-                    {clientPositions.map((position) => (
-                      <MenuItem key={position.value} value={position.value}>
-                        {position.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                  <Typography variant="caption" color="error">
-                    {errors.clientPositionId}
-                  </Typography>
-                </FormControl>
-
-                <FormText label="Agency Name" name="agencyName" value={formData.agencyName} onChange={handleChange} error={errors.agencyName} />
-
-                <FormText
-                  label="Agency Address"
-                  name="agencyAddress"
-                  value={formData.agencyAddress}
-                  onChange={handleChange}
-                  error={errors.agencyAddress}
-                  multiline
-                />
-
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSubmit}
-                  sx={{
-                    borderRadius: '5px',
-                    paddingX: '20px',
-                    paddingY: '7px',
-                    fontSize: '13px',
-                    textTransform: 'none',
-                    fontFamily: 'Inter, sans-serif',
-                    width: '100%',
-                    mt: '20px',
-                  }}
+                  label="Client Position"
+                  error={Boolean(errors.clientPositionId)}
                 >
-                  Sign Up
-                </Button>
-              </Box>
+                  {clientPositions.map((position) => (
+                    <MenuItem key={position.value} value={position.value}>
+                      {position.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+                <Typography variant="caption" color="error">
+                  {errors.clientPositionId}
+                </Typography>
+              </FormControl>
+
+              <FormText label="Agency Name" name="agencyName" value={formData.agencyName} onChange={handleChange} error={errors.agencyName} />
+
+              <FormText
+                label="Agency Address"
+                name="agencyAddress"
+                value={formData.agencyAddress}
+                onChange={handleChange}
+                error={errors.agencyAddress}
+                multiline
+              />
 
               <Button
-                variant="outlined"
-                color="inherit"
+                variant="contained"
+                color="primary"
                 onClick={handleSubmit}
                 sx={{
                   borderRadius: '5px',
@@ -309,24 +289,43 @@ const ModalRegister = ({ open, handleClose }) => {
                   textTransform: 'none',
                   fontFamily: 'Inter, sans-serif',
                   width: '100%',
-                  color: '#848484',
-                  justifyContent: 'center',
-                  mt: '30px',
+                  mt: '20px',
                 }}
               >
-                <GoogleIcon sx={{ marginRight: '5px', fontSize: '18px' }} />
-                Sign Up with Google
+                Sign Up
               </Button>
-
-              <Typography variant="body2" sx={{ textAlign: 'center', mt: '50px' }}>
-                Already Have an account?{' '}
-                <Link href="#" onClick={() => console.log('Navigate to registration page')} sx={{ textDecoration: 'none' }}>
-                  Sign In Here
-                </Link>
-              </Typography>
             </Box>
-          </Modal>
-      }
+
+            <Button
+              variant="outlined"
+              color="inherit"
+              onClick={handleSubmit}
+              sx={{
+                borderRadius: '5px',
+                paddingX: '20px',
+                paddingY: '7px',
+                fontSize: '13px',
+                textTransform: 'none',
+                fontFamily: 'Inter, sans-serif',
+                width: '100%',
+                color: '#848484',
+                justifyContent: 'center',
+                mt: '30px',
+              }}
+            >
+              <GoogleIcon sx={{ marginRight: '5px', fontSize: '18px' }} />
+              Sign Up with Google
+            </Button>
+
+            <Typography variant="body2" sx={{ textAlign: 'center', mt: '50px' }}>
+              Already Have an account?{' '}
+              <Link href="#" onClick={() => console.log('Navigate to registration page')} sx={{ textDecoration: 'none' }}>
+                Sign In Here
+              </Link>
+            </Typography>
+          </Box>
+        </Modal>
+      )}
     </>
   );
 };
