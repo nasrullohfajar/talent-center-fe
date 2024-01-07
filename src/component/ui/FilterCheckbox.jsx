@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FormCheckbox from 'component/form/FormCheckbox';
 
 const FilterCheckbox = ({ name, spec }) => {
-  const [isShowFilter, setIsShowFilter] = useState(false);
+  const [isShowFilter, setIsShowFilter] = useState(true);
 
   const handleOpenChange = () => {
     setIsShowFilter(!isShowFilter);
