@@ -191,9 +191,9 @@ const ModalRegister = ({ open, handleClose }) => {
                   <FormText label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} error={errors.firstName} />
                 </Grid>
 
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                   <FormText label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} error={errors.lastName} />
-                </Grid>
+                </Grid> */}
               </Grid>
 
               <FormText label="Email" name="email" value={formData.email} onChange={handleChange} error={errors.email} />

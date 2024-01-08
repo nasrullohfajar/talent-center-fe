@@ -57,6 +57,8 @@ const SidebarMain = () => {
         width: '350px',
         boxShadow: '2px 0px 5px rgba(0, 0, 0, 0.2)',
         overflow: 'auto',
+        zIndex: 10,
+        position: 'fixed'
       }}
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', p: '40px', pt: '110px', width: '70%', gap: '10px', color: '#212121' }}>

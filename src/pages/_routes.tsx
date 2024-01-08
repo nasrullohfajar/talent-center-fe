@@ -1,7 +1,7 @@
 import { SecurableRoute } from '@astarx-studio/react-core/router';
 
 import Landing from '../pages/client/Landing';
-import Home from '../pages/client/Home';
+import Main from './client/Main';
 
 const routes: SecurableRoute[] = [
   {
@@ -10,7 +10,7 @@ const routes: SecurableRoute[] = [
   },
   {
     path: '/home',
-    element: <Home />,
+    element: <Main />,
   },
 ];
 

@@ -14,7 +14,7 @@ const ContentLanding = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContentLanding: 'center',
+                justifyContent: 'center',
                 height: '100vh',
                 gap: '50px',
             }}
@@ -38,9 +38,6 @@ const ContentLanding = () => {
                     <Tag type={'button'} name={'VueJS'} />
                 </Box>
             </Box>
-
-
-
         </Box>
     );
 }
