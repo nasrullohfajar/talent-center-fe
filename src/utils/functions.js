@@ -1,8 +1,23 @@
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useMediaQuery, createTheme } from '@mui/material';
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 
 const useIsMobile = () => {
-    const theme = useTheme();
-    return useMediaQuery(theme.breakpoints.down('sm'));
+  return useMediaQuery(theme.breakpoints.down('sm'));
 };
 
-export { useIsMobile };
+const useIsXl = () => {
+  return useMediaQuery(theme.breakpoints.down('xl'));
+};
+
+export { useIsMobile, useIsXl };

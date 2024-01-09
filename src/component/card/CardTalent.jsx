@@ -6,10 +6,13 @@ import TagTalent from 'component/ui/TagTalent';
 import downloadCV from 'assets/icon/downloadCV.svg';
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { useIsXl } from 'utils/functions';
 
-const CardTalent = ({ clientData }) => {
+const CardTalent = ({ talentData }) => {
+  const isXl = useIsXl();
+
   return (
-    <Box sx={{ width: '100%', bgcolor: 'white', height: '390px', borderRadius: '10px', px: '30px', py: '20px', boxSizing: 'border-box' }}>
+    <Box sx={{ width: '100%', bgcolor: 'white', borderRadius: '10px', px: '30px', py: '20px', boxSizing: 'border-box' }}>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '10px', borderBottom: '1px solid #DBDBDB', pb: '20px' }}>
         <Box sx={{ width: '20%' }}>
           <img src={talent} alt="Talent" style={{ width: '90%', borderRadius: '50%', objectFit: 'cover' }} />
@@ -18,16 +21,16 @@ const CardTalent = ({ clientData }) => {
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
           <Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: '10px', alignItems: 'center', mb: '10px' }}>
-              {clientData.status === 'Available' ? <AvailableStatus available={true} /> : <AvailableStatus available={false} />}
+              {talentData.status === 'Available' ? <AvailableStatus available={true} /> : <AvailableStatus available={false} />}
 
               <Typography variant="body2" sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: '700', color: '#2C8AD3', fontSize: '23px' }}>
-                {clientData.name}
+                {talentData.name}
               </Typography>
             </Box>
 
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: '10px', alignItems: 'center' }}>
               <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', color: '#848484' }}>
-                {clientData.experience} {clientData.experience !== '1' ? ' Years of Experience' : 'Year of Experience'}
+                {talentData.experience} {talentData.experience !== '1' ? ' Years of Experience' : 'Year of Experience'}
               </Typography>
 
               <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', color: '#848484' }}>
@@ -35,29 +38,29 @@ const CardTalent = ({ clientData }) => {
               </Typography>
 
               <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', color: '#848484' }}>
-                {clientData.level} Level
+                {talentData.level} Level
               </Typography>
             </Box>
           </Box>
 
           <Box>
-            <TagTalent name={'Position'} tag={clientData.position} />
+            <TagTalent name={'Position'} tag={talentData.position} />
           </Box>
 
           <Box>
-            <TagTalent name={'Skill Set'} tag={clientData.skill} />
+            <TagTalent name={'Skill Set'} tag={talentData.skill} />
           </Box>
         </Box>
       </Box>
 
-      <Box sx={{ display: 'flex', justifyItems: 'center', py: '20px', justifyContent: 'space-between' }}>
+      <Box sx={{ display: 'flex', justifyItems: 'center', pt: '20px', justifyContent: 'space-between' }}>
         <Button
           color="inherit"
           variant="text"
           sx={{
             borderRadius: '5px',
-            paddingX: '20px',
-            paddingY: '7px',
+            paddingX: isXl ? '5px' : '20px',
+            paddingY: '5px',
             fontSize: '14px',
             textTransform: 'capitalize',
             fontFamily: 'Inter, sans-serif',
@@ -66,7 +69,7 @@ const CardTalent = ({ clientData }) => {
           }}
           onClick={() => {}}
         >
-          <Box sx={{ ml: '5px' }}>
+          <Box sx={{ mr: '5px' }}>
             <img src={downloadCV} alt="icon" width={'14px'} style={{ paddingTop: '5px' }} />
           </Box>
           Download CV
@@ -78,8 +81,8 @@ const CardTalent = ({ clientData }) => {
             variant="outlined"
             sx={{
               borderRadius: '5px',
-              paddingX: '20px',
-              paddingY: '7px',
+              paddingX: isXl ? '5px' : '20px',
+              paddingY: '5px',
               fontSize: '14px',
               textTransform: 'capitalize',
               fontFamily: 'Inter, sans-serif',
@@ -89,7 +92,7 @@ const CardTalent = ({ clientData }) => {
             }}
             onClick={() => {}}
           >
-            <Box sx={{ display: 'flex', ml: '5px', height: '100%', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', height: '100%', alignItems: 'center' }}>
               <AddIcon sx={{ fontSize: '18px' }} />
             </Box>
             Add to List
@@ -99,8 +102,8 @@ const CardTalent = ({ clientData }) => {
             variant="contained"
             sx={{
               borderRadius: '5px',
-              paddingX: '20px',
-              paddingY: '7px',
+              paddingX: isXl ? '5px' : '20px',
+              paddingY: '5px',
               fontSize: '14px',
               textTransform: 'capitalize',
               fontFamily: 'Inter, sans-serif',
@@ -114,7 +117,7 @@ const CardTalent = ({ clientData }) => {
             onClick={() => {}}
           >
             See Detail
-            <Box sx={{ display: 'flex', ml: '5px', height: '100%', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', height: '100%', alignItems: 'center' }}>
               <KeyboardArrowRightIcon sx={{ fontSize: '18px' }} />
             </Box>
           </Button>
