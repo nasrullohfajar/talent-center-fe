@@ -57,7 +57,9 @@ const NavbarMain = () => {
               <MobileMenu
                 isOpen={isDrawerOpen}
                 handleClose={handleDrawerClose}
+                anchor={'right'}
                 paperProps={{ sx: { width: '60%', bgcolor: '#2C8AD3' } }}
+                sx={{ pl: '30px' }}
                 buttonTop={
                   <Button
                     color="inherit"
