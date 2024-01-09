@@ -3,6 +3,7 @@ import { Box, Typography, Grid } from '@mui/material';
 import CardTalent from 'component/card/CardTalent';
 import FormSelect from 'component/form/FormSelect';
 import PaginationMain from './PaginationMain';
+import talentNotFound from 'assets/image/talentNotFound.png';
 
 const ContentMain = () => {
   const talentData = [
@@ -30,8 +31,6 @@ const ContentMain = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'start',
-        justifyContent: 'start',
         minHeight: 'calc(100vh - 15 5px)',
         p: '115px 40px 40px 390px',
       }}
@@ -47,20 +46,32 @@ const ContentMain = () => {
       </Box>
 
       <Box>
-        <Grid container spacing={3}>
-          <Grid xs={6} sx={{ mt: '20px', pl: '20px' }}>
-            <CardTalent talentData={talentData[0]} />
+        {talentData.length > 0 ? (
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <CardTalent talentData={talentData[0]} />
+            </Grid>
+
+            <Grid item xs={6}>
+              <CardTalent talentData={talentData[0]} />
+            </Grid>
+
+            <Grid item xs={6}>
+              <CardTalent talentData={talentData[0]} />
+            </Grid>
           </Grid>
-          <Grid xs={6} sx={{ mt: '20px', pl: '20px' }}>
-            <CardTalent talentData={talentData[0]} />
-          </Grid>
-          <Grid xs={6} sx={{ mt: '20px', pl: '20px' }}>
-            <CardTalent talentData={talentData[0]} />
-          </Grid>
-        </Grid>
+        ) : (
+          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <img src={talentNotFound} alt="Talent Not Found" />
+
+            <Typography variant="body2" sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: '400', color: '#848484', fontSize: '24px' }}>
+              Data tidak tersedia
+            </Typography>
+          </Box>
+        )}
       </Box>
 
-      <PaginationMain />
+      {talentData.length > 0 && <PaginationMain />}
     </Box>
   );
 };

@@ -13,7 +13,7 @@ const FormSelect = ({ spec }) => {
 
   return (
     <Box sx={{ display: 'flex', gap: '10px', mb: '15px', fontSize: '14px', fontFamily: 'Inter, sans-serif', alignItems: 'center' }}>
-      <label for="filter">Sort by</label>
+      <label htmlFor="filter">Sort by</label>
       <select
         name="filter"
         id="filter"
@@ -29,7 +29,7 @@ const FormSelect = ({ spec }) => {
         }}
       >
         {spec.map((item) => (
-          <option value={item.value} style={{ color: 'black' }}>
+          <option key={item.value} value={item.value} style={{ color: 'black' }}>
             {item.label}
           </option>
         ))}

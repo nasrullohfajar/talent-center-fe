@@ -16,8 +16,8 @@ const Main = () => {
             bgcolor: '#f2f2f2',
           }}
         >
-          <SidebarMain />
-          <ContentMain />
+          {/* <SidebarMain /> */}
+          {/* <ContentMain /> */}
         </Box>
       </Box>
     </>
