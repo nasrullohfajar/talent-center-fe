@@ -9,21 +9,19 @@ const Main = () => {
   const isMobile = useIsMobile();
 
   return (
-    <>
-      <Box sx={{ position: 'relative', minHeight: '100vh' }}>
-        <NavbarMain />
-        <Box
-          sx={{
-            position: 'relative',
-            minHeight: '100vh', // fullscreen - navbar
-            bgcolor: '#f2f2f2',
-          }}
-        >
-          {!isMobile && <SidebarMain />}
-          <ContentMain />
-        </Box>
+    <Box sx={{ position: 'relative', minHeight: '100vh' }}>
+      <NavbarMain />
+      <Box
+        sx={{
+          position: 'relative',
+          minHeight: '100vh', // fullscreen - navbar
+          bgcolor: '#f2f2f2',
+        }}
+      >
+        {!isMobile && <SidebarMain />}
+        <ContentMain />
       </Box>
-    </>
+    </Box>
   );
 };
 

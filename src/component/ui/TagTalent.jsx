@@ -2,10 +2,11 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useIsXl, useIsMobile } from 'utils/functions';
 
-const TagTalent = ({ name, tag }) => {
+const TagTalent = ({ name, tag, wrap }) => {
+  console.log('wrap:', wrap);
   const isXl = useIsXl();
   const isMobile = useIsMobile();
-  const maxTagsToShow = isXl ? 3 : 4;
+  const maxTagsToShow = !wrap ? 7 : isXl ? 3 : 4;
 
   const displayTags = tag.slice(0, maxTagsToShow);
   const remainingTags = tag.slice(maxTagsToShow);

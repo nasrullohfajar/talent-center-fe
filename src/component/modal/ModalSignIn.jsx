@@ -64,7 +64,7 @@ const ModalSignIn = ({ open, handleClose }) => {
           username: formData.email,
           password: formData.password,
         });
-        navigate('/home');
+        navigate('/talent');
       } catch (error) {
         setIsAlert(true);
       }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Button } from '@mui/material';
 import talent from 'assets/image/talent.jpg';
 import AvailableStatus from 'component/ui/AvailableStatus';
@@ -11,9 +12,20 @@ import { useIsXl, useIsMobile } from 'utils/functions';
 const CardTalent = ({ talentData }) => {
   const isXl = useIsXl();
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   return (
-    <Box sx={{ width: '100%', bgcolor: 'white', borderRadius: '10px', px: '30px', py: '20px', boxSizing: 'border-box' }}>
+    <Box
+      sx={{
+        width: '100%',
+        bgcolor: 'white',
+        borderRadius: '10px',
+        px: '30px',
+        py: '20px',
+        boxSizing: 'border-box',
+        boxShadow: '2px 0px 5px rgba(0, 0, 0, 0.2)',
+      }}
+    >
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '10px', borderBottom: '1px solid #DBDBDB', pb: '20px' }}>
         <Box sx={{ width: isMobile ? '30%' : '20%' }}>
           <img src={talent} alt="Talent" style={{ width: '90%', borderRadius: '50%', objectFit: 'cover' }} />
@@ -120,7 +132,9 @@ const CardTalent = ({ talentData }) => {
                 bgcolor: '#1f69a3',
               },
             }}
-            onClick={() => {}}
+            onClick={() => {
+              navigate('/talent/detail');
+            }}
           >
             See Detail
             <Box sx={{ display: 'flex', height: '100%', alignItems: 'center' }}>
