@@ -1,11 +1,15 @@
 import React from 'react';
+import { useIsMobile } from 'utils/functions';
 import { Box, Typography, Grid } from '@mui/material';
 import CardTalent from 'component/card/CardTalent';
 import FormSelect from 'component/form/FormSelect';
 import PaginationMain from './PaginationMain';
 import talentNotFound from 'assets/image/talentNotFound.png';
+import SearchBar from 'component/ui/Searchbar';
 
 const ContentMain = () => {
+  const isMobile = useIsMobile();
+
   const talentData = [
     {
       name: 'Markus Kotlin',
@@ -32,31 +36,47 @@ const ContentMain = () => {
         display: 'flex',
         flexDirection: 'column',
         minHeight: 'calc(100vh - 15 5px)',
-        p: '115px 40px 40px 390px',
+        p: isMobile ? '80px 20px' : '115px 40px 40px 390px',
       }}
     >
+      {isMobile && <SearchBar />}
+
       <Box
-        sx={{ display: 'flex', width: '100%', flexDirection: 'row', gap: '30px', alignItems: 'center', justifyContent: 'space-between', mb: '20px' }}
+        sx={{
+          display: 'flex',
+          width: '100%',
+          flexDirection: isMobile ? 'column' : 'row',
+          gap: isMobile ? '5px' : '30px',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          mb: '20px',
+        }}
       >
-        <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', color: 'black', mb: '20px' }}>
+        <Typography
+          variant="body2"
+          sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', color: 'black', order: isMobile ? 2 : 1, flexWrap: 'wrap' }}
+        >
           Showing you 1 - 10 talents out of 15 for <span style={{ fontWeight: '700' }}>"Javascript"</span>
         </Typography>
 
-        <FormSelect spec={filterSpec} />
+        <Box sx={{ order: isMobile ? 1 : 2, display: 'flex', gap: '5px', mt: isMobile ? '15px' : '' }}>
+          {isMobile && <FormSelect spec={filterSpec} />}
+          <FormSelect spec={filterSpec} />
+        </Box>
       </Box>
 
       <Box>
         {talentData.length > 0 ? (
           <Grid container spacing={3}>
-            <Grid item xs={6}>
+            <Grid item xs={isMobile ? 12 : 6}>
               <CardTalent talentData={talentData[0]} />
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={isMobile ? 12 : 6}>
               <CardTalent talentData={talentData[0]} />
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={isMobile ? 12 : 6}>
               <CardTalent talentData={talentData[0]} />
             </Grid>
           </Grid>
@@ -71,7 +91,7 @@ const ContentMain = () => {
         )}
       </Box>
 
-      {talentData.length > 0 && <PaginationMain />}
+      {/* {talentData.length > 0 && <PaginationMain />} */}
     </Box>
   );
 };

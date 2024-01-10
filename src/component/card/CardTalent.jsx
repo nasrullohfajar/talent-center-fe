@@ -6,15 +6,16 @@ import TagTalent from 'component/ui/TagTalent';
 import downloadCV from 'assets/icon/downloadCV.svg';
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useIsXl } from 'utils/functions';
+import { useIsXl, useIsMobile } from 'utils/functions';
 
 const CardTalent = ({ talentData }) => {
   const isXl = useIsXl();
+  const isMobile = useIsMobile();
 
   return (
     <Box sx={{ width: '100%', bgcolor: 'white', borderRadius: '10px', px: '30px', py: '20px', boxSizing: 'border-box' }}>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: '10px', borderBottom: '1px solid #DBDBDB', pb: '20px' }}>
-        <Box sx={{ width: '20%' }}>
+        <Box sx={{ width: isMobile ? '30%' : '20%' }}>
           <img src={talent} alt="Talent" style={{ width: '90%', borderRadius: '50%', objectFit: 'cover' }} />
         </Box>
 
@@ -23,19 +24,24 @@ const CardTalent = ({ talentData }) => {
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: '10px', alignItems: 'center', mb: '10px' }}>
               {talentData.status === 'Available' ? <AvailableStatus available={true} /> : <AvailableStatus available={false} />}
 
-              <Typography variant="body2" sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: '700', color: '#2C8AD3', fontSize: '23px' }}>
+              <Typography
+                variant="body2"
+                sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: '700', color: '#2C8AD3', fontSize: isMobile ? '14px' : '23px' }}
+              >
                 {talentData.name}
               </Typography>
             </Box>
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', gap: '10px', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '10px', alignItems: 'start' }}>
               <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', color: '#848484' }}>
                 {talentData.experience} {talentData.experience !== '1' ? ' Years of Experience' : 'Year of Experience'}
               </Typography>
 
-              <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', color: '#848484' }}>
-                •
-              </Typography>
+              {!isMobile && (
+                <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', color: '#848484' }}>
+                  •
+                </Typography>
+              )}
 
               <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', color: '#848484' }}>
                 {talentData.level} Level
@@ -66,6 +72,7 @@ const CardTalent = ({ talentData }) => {
             fontFamily: 'Inter, sans-serif',
             fontWeight: '700',
             color: '#2C8AD3',
+            alignItems: 'start',
           }}
           onClick={() => {}}
         >
@@ -75,7 +82,7 @@ const CardTalent = ({ talentData }) => {
           Download CV
         </Button>
 
-        <Box sx={{ display: 'flex', justifyItems: 'center' }}>
+        <Box sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyItems: 'center', gap: '10px' }}>
           <Button
             color="inherit"
             variant="outlined"
@@ -88,7 +95,6 @@ const CardTalent = ({ talentData }) => {
               fontFamily: 'Inter, sans-serif',
               fontWeight: '700',
               color: '#2C8AD3',
-              mr: '10px',
             }}
             onClick={() => {}}
           >
