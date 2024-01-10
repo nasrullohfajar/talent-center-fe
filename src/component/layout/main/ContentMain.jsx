@@ -91,7 +91,7 @@ const ContentMain = () => {
         )}
       </Box>
 
-      {/* {talentData.length > 0 && <PaginationMain />} */}
+      {!isMobile && talentData.length > 0 && <PaginationMain />}
     </Box>
   );
 };

@@ -5,12 +5,6 @@ const PaginationMain = () => {
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const formControlLabelStyle = {
-    '& .MuiButton-sizeSmall': {
-      width: '5px',
-    },
-  };
-
   const handleChangePage = (newPage) => {
     setPage(newPage);
   };

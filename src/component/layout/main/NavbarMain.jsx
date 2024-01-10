@@ -35,7 +35,7 @@ const NavbarMain = () => {
               </Typography>
             </Box>
 
-            {!isMobile && <SearchBar width={600} height={'35px'} borderRadius={'5px'} />}
+            {!isMobile && <SearchBar sx={{ width: 600, height: '35px' }} />}
 
             {isMobile && (
               <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto', gap: '10px' }}>
