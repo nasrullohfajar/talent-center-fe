@@ -10,14 +10,14 @@ import { useIsMobile } from 'utils/functions';
 const Main = () => {
   const isMobile = useIsMobile();
   const talentData = [
-    {
-      name: 'Markus Kotlin',
-      status: 'Available',
-      experience: '5+',
-      level: 'Senior',
-      position: ['Android Developer', 'Web Developer'],
-      skill: ['Javascipt', 'ReactJS', 'VueJS', 'Kotlin', 'Flutter', 'PHP', 'Laravel'],
-    },
+    // {
+    //   name: 'Markus Kotlin',
+    //   status: 'Available',
+    //   experience: '5+',
+    //   level: 'Senior',
+    //   position: ['Android Developer', 'Web Developer'],
+    //   skill: ['Javascipt', 'ReactJS', 'VueJS', 'Kotlin', 'Flutter', 'PHP', 'Laravel'],
+    // },
   ];
 
   return (
@@ -34,7 +34,7 @@ const Main = () => {
       >
         {/* Talent List */}
         {/* {!isMobile && <SidebarMain />}
-        <ContentMain /> */}
+        <ContentMain talentData={talentData[0]} /> */}
 
         {/* Talent Detail */}
         {/* <CardTalentDetail talentData={talentData[0]} /> */}

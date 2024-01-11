@@ -6,20 +6,10 @@ import FormSelect from 'component/form/FormSelect';
 import PaginationMain from './PaginationMain';
 import talentNotFound from 'assets/image/talentNotFound.png';
 import SearchBar from 'component/ui/Searchbar';
+import EmptyData from 'component/ui/EmptyData';
 
-const ContentMain = () => {
+const ContentMain = ({ talentData }) => {
   const isMobile = useIsMobile();
-
-  const talentData = [
-    {
-      name: 'Markus Kotlin',
-      status: 'Available',
-      experience: '5+',
-      level: 'Senior',
-      position: ['Android Developer', 'Web Developer'],
-      skill: ['Javascipt', 'ReactJS', 'VueJS', 'Kotlin', 'Flutter', 'PHP', 'Laravel'],
-    },
-  ];
 
   const filterSpec = [
     { value: 'ascYear', label: 'Years of Experience A-Z' },
@@ -66,7 +56,7 @@ const ContentMain = () => {
       </Box>
 
       <Box>
-        {talentData.length > 0 ? (
+        {talentData ? (
           <Grid container spacing={3}>
             <Grid item xs={isMobile ? 12 : 6}>
               <CardTalent talentData={talentData[0]} />
@@ -81,13 +71,7 @@ const ContentMain = () => {
             </Grid>
           </Grid>
         ) : (
-          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-            <img src={talentNotFound} alt="Talent Not Found" />
-
-            <Typography variant="body2" sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: '400', color: '#848484', fontSize: '24px' }}>
-              Data tidak tersedia
-            </Typography>
-          </Box>
+          <EmptyData img={talentNotFound} message={'Data tidak tersedia'} />
         )}
       </Box>
 
