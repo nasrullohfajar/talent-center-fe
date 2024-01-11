@@ -4,7 +4,7 @@ import { Box, Typography, Button } from '@mui/material';
 import talent from 'assets/image/talent.jpg';
 import AvailableStatus from 'component/ui/AvailableStatus';
 import TagTalent from 'component/ui/TagTalent';
-import downloadCV from 'assets/icon/downloadCV.svg';
+import downloadCVBlue from 'assets/icon/downloadCVBlue.svg';
 import AddIcon from '@mui/icons-material/Add';
 import { useIsXl, useIsMobile } from 'utils/functions';
 
@@ -72,7 +72,7 @@ const CardTalentDetail = ({ talentData }) => {
             onClick={() => {}}
           >
             <Box sx={{ mr: '5px' }}>
-              <img src={downloadCV} alt="icon" width={'14px'} style={{ paddingTop: '5px' }} />
+              <img src={downloadCVBlue} alt="icon" width={'14px'} style={{ paddingTop: '5px' }} />
             </Box>
             Download CV
           </Button>
