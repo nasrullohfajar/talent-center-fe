@@ -1,46 +1,46 @@
-import React, { useState } from 'react';
-import { useIsMobile } from '../../../utils/functions';
-import logotujuhsembilan from '../../../assets/image/logotujuhsembilan.svg';
+import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Button, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import ModalSignIn from '../../modal/ModalSignIn';
-import ModalRegister from '../../modal/ModalRegister';
-import MobileMenu from '../mobile/MobileMenu';
+import ModalSignIn from 'component/modal/ModalSignIn';
+import ModalRegister from 'component/modal/ModalRegister';
+import MobileMenu from 'component/layout/mobile/MobileMenu';
+import logotujuhsembilan from 'assets/image/logotujuhsembilan.svg';
+import { useIsMobile } from 'utils/functions';
 
-const NavbarLanding = ({ bgColor, hasBg }) => {
-  const isMobile = useIsMobile();
+const NavbarLanding = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isModalSignInOpen, setIsModalSignInOpen] = useState(false);
   const [isModalRegisterOpen, setIsModalRegisterOpen] = useState(false);
+  const isMobile = useIsMobile();
 
-  const handleDrawerOpen = () => {
-    setIsDrawerOpen(true);
+  const changeDrawerOpen = () => {
+    setIsDrawerOpen(!isDrawerOpen);
   };
 
-  const handleDrawerClose = () => {
-    setIsDrawerOpen(false);
+  const changeModalSignInOpen = () => {
+    setIsModalSignInOpen(!isModalSignInOpen);
   };
 
-  const handleModalSignInOpen = () => {
-    setIsModalSignInOpen(true);
+  const changeModalRegisterOpen = () => {
+    setIsModalRegisterOpen(!isModalRegisterOpen);
   };
 
-  const handleModalSignInClose = () => {
-    setIsModalSignInOpen(false);
-  };
+  useEffect(() => {
+    if (isModalSignInOpen || isModalRegisterOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
 
-  const handleModalRegisterOpen = () => {
-    setIsModalRegisterOpen(true);
-  };
-
-  const handleModalRegisterClose = () => {
-    setIsModalRegisterOpen(false);
-  };
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
+  }, [isModalSignInOpen, isModalRegisterOpen]);
 
   return (
     <>
       <Box sx={{ position: 'fixed', width: '100%', zIndex: 99 }}>
-        <AppBar position="static" sx={{ background: hasBg, bgcolor: bgColor, boxShadow: 'none', py: '10px', px: '10px' }}>
+        <AppBar position="static" sx={{ background: 'none', boxShadow: 'none', py: '10px', px: '10px' }}>
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <img src={logotujuhsembilan} alt="Logo" style={{ width: '50px' }} />
@@ -51,7 +51,7 @@ const NavbarLanding = ({ bgColor, hasBg }) => {
 
             {isMobile && (
               <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}>
-                <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerOpen}>
+                <IconButton edge="start" color="inherit" aria-label="menu" onClick={changeDrawerOpen}>
                   <MenuIcon />
                 </IconButton>
               </Box>
@@ -60,7 +60,7 @@ const NavbarLanding = ({ bgColor, hasBg }) => {
             {isMobile ? (
               <MobileMenu
                 isOpen={isDrawerOpen}
-                handleClose={handleDrawerClose}
+                handleClose={changeDrawerOpen}
                 anchor={'right'}
                 paperProps={{ sx: { width: '60%', bgcolor: '#2C8AD3' } }}
                 sx={{ pl: '50px' }}
@@ -68,8 +68,8 @@ const NavbarLanding = ({ bgColor, hasBg }) => {
                   <Button
                     color="inherit"
                     onClick={() => {
-                      handleModalRegisterOpen();
-                      handleDrawerClose();
+                      changeModalRegisterOpen();
+                      changeDrawerOpen();
                     }}
                     sx={{
                       borderRadius: '25px',
@@ -88,8 +88,8 @@ const NavbarLanding = ({ bgColor, hasBg }) => {
                   <Button
                     color="inherit"
                     onClick={() => {
-                      handleModalSignInOpen();
-                      handleDrawerClose();
+                      changeModalSignInOpen();
+                      changeDrawerOpen();
                     }}
                     sx={{
                       borderRadius: '25px',
@@ -120,9 +120,7 @@ const NavbarLanding = ({ bgColor, hasBg }) => {
                       textTransform: 'capitalize',
                       fontFamily: 'Inter, sans-serif',
                     }}
-                    onClick={() => {
-                      handleModalRegisterOpen();
-                    }}
+                    onClick={changeModalRegisterOpen}
                   >
                     Register
                   </Button>
@@ -138,9 +136,7 @@ const NavbarLanding = ({ bgColor, hasBg }) => {
                       textTransform: 'capitalize',
                       fontFamily: 'Inter, sans-serif',
                     }}
-                    onClick={() => {
-                      handleModalSignInOpen();
-                    }}
+                    onClick={changeModalSignInOpen}
                   >
                     Sign In
                   </Button>
@@ -150,9 +146,8 @@ const NavbarLanding = ({ bgColor, hasBg }) => {
           </Toolbar>
         </AppBar>
 
-        <ModalSignIn open={isModalSignInOpen} handleClose={handleModalSignInClose} />
-
-        <ModalRegister open={isModalRegisterOpen} handleClose={handleModalRegisterClose} />
+        <ModalSignIn open={isModalSignInOpen} handleClose={changeModalSignInOpen} />
+        <ModalRegister open={isModalRegisterOpen} handleClose={changeModalRegisterOpen} />
       </Box>
     </>
   );
