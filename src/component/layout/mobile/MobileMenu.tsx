@@ -1,8 +1,9 @@
 import React from 'react';
 import { IconButton, Drawer, List, ListItem, Box } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { IMobileMenuProps } from 'types';
 
-const MobileMenu = ({ isOpen, handleClose, anchor, paperProps, buttonTop, buttonBottom, sx }) => (
+const MobileMenu = ({ isOpen, handleClose, anchor, paperProps, buttonTop, buttonBottom, sx }: IMobileMenuProps) => (
   <Drawer anchor={anchor} open={isOpen} onClose={handleClose} PaperProps={paperProps}>
     <Box sx={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', ...sx }}>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', px: '20px', py: '10px' }}>

@@ -1,6 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { SxProps } from '@mui/system';
-import { TextField, InputAdornment, IconButton, Paper } from '@mui/material';
+import { TextField, InputAdornment, IconButton, Paper, SxProps } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 interface ISearchBarProps {
