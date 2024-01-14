@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
+import { SxProps } from '@mui/system';
 import { TextField, InputAdornment, IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-const SearchBar = ({ sx }) => {
-  const handleSearch = (event) => {
+interface ISearchBarProps {
+  sx?: SxProps;
+}
+
+const SearchBar = ({ sx }: ISearchBarProps) => {
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     console.log('Search query:', event.target.value);
   };
+
+  console.log('sx', sx);
 
   return (
     <Paper component="form" sx={{ display: 'flex', alignItems: 'center', ...sx }}>
