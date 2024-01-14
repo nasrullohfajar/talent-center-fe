@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Button, Box, Modal, IconButton, InputAdornment, Link } from '@mui/material';
@@ -6,16 +6,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import Visibility from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOff from '@mui/icons-material/VisibilityOffOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
+import FormText from 'component/form/FormText';
+import CustomAlert from 'component/modal/CustomAlert';
+import { useIsMobile } from 'utils/functions';
+import { IModalAuthProps, IFormAuthProps } from 'types';
 
-import { useIsMobile } from '../../utils/functions';
-import FormText from '../form/FormText';
-import CustomAlert from './CustomAlert';
-
-const ModalSignIn = ({ open, handleClose }) => {
+const ModalSignIn = ({ isOpen, handleClose }: IModalAuthProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
-  const [errors, setErrors] = useState('');
-  const [formData, setFormData] = useState({
+  const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>({});
+  const [formData, setFormData] = useState<IFormAuthProps>({
     email: '',
     password: '',
   });
@@ -24,16 +24,16 @@ const ModalSignIn = ({ open, handleClose }) => {
   const navigate = useNavigate();
 
   const handleTogglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+    setShowPassword(!showPassword);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
 
     //reset error
-    if (errors[name]) {
-      setErrors({
-        ...errors,
+    if (errorMessage[name]) {
+      setErrorMessage({
+        ...errorMessage,
         [name]: '',
       });
     }
@@ -45,7 +45,7 @@ const ModalSignIn = ({ open, handleClose }) => {
   };
 
   const validateForm = () => {
-    const formError = {};
+    const formError: { [key: string]: string } = {};
 
     Object.keys(formData).forEach((key) => {
       if (!formData[key]) {
@@ -53,7 +53,7 @@ const ModalSignIn = ({ open, handleClose }) => {
       }
     });
 
-    setErrors(formError);
+    setErrorMessage(formError);
     return Object.keys(formError).length === 0;
   };
 
@@ -78,17 +78,26 @@ const ModalSignIn = ({ open, handleClose }) => {
   };
 
   useEffect(() => {
-    if (isAlert && open) {
+    if (isAlert && isOpen) {
       setIsAlert(false);
     }
-  }, [open, isAlert]);
+
+    setFormData({
+      email: '',
+      password: '',
+    });
+
+    setErrorMessage({
+      key: '',
+    });
+  }, [isOpen, isAlert]);
 
   return (
     <>
-      {isAlert && !open ? (
+      {isAlert && !isOpen ? (
         <CustomAlert type={'error'} message={'Sign In Gagal'} open={true} />
       ) : (
-        <Modal open={open} onClose={handleClose}>
+        <Modal open={isOpen} onClose={handleClose}>
           <Box
             sx={{
               position: 'absolute',
@@ -99,7 +108,7 @@ const ModalSignIn = ({ open, handleClose }) => {
               padding: '20px',
               borderRadius: '8px',
               outline: 'none',
-              width: isMobile ? '260px' : '360px',
+              width: isMobile ? '350px' : '460px',
               p: '50px',
             }}
           >
@@ -113,7 +122,7 @@ const ModalSignIn = ({ open, handleClose }) => {
               <Typography variant="h6" sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: '700', textAlign: 'center' }}>
                 Welcome Back
               </Typography>
-              <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: '400', textAlign: 'center', color: 'gray', mt: '5px' }}>
+              <Typography variant="body2" sx={{ fontFamily: 'Inter, sans-serif', textAlign: 'center', color: 'gray', mt: '5px' }}>
                 Please sign in first to explore further on our website
               </Typography>
             </Box>
@@ -128,7 +137,7 @@ const ModalSignIn = ({ open, handleClose }) => {
                 mt: '20px',
               }}
             >
-              <FormText label="Email" name="email" value={formData.email} onChange={handleChange} error={errors.email} />
+              <FormText label="Email" name="email" value={formData.email} onChange={handleChange} error={errorMessage.email} />
 
               <FormText
                 label="Password"
@@ -136,8 +145,8 @@ const ModalSignIn = ({ open, handleClose }) => {
                 type={showPassword ? 'text' : 'password'}
                 value={formData.password}
                 onChange={handleChange}
-                error={errors.password}
-                InputProps={{
+                error={errorMessage.password}
+                inputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton onClick={handleTogglePasswordVisibility} edge="end">
@@ -190,7 +199,7 @@ const ModalSignIn = ({ open, handleClose }) => {
 
             <Typography variant="body2" sx={{ textAlign: 'center', mt: '50px' }}>
               Don't have an account?{' '}
-              <Link href="#" onClick={() => console.log('Navigate to registration page')} sx={{ textDecoration: 'none' }}>
+              <Link href="#" onClick={() => {}} sx={{ textDecoration: 'none' }}>
                 Register Here
               </Link>
               .

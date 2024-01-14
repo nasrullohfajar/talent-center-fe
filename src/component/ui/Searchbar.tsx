@@ -11,8 +11,6 @@ const SearchBar = ({ sx }: ISearchBarProps) => {
     console.log('Search query:', event.target.value);
   };
 
-  console.log('sx', sx);
-
   return (
     <Paper component="form" sx={{ display: 'flex', alignItems: 'center', ...sx }}>
       <TextField

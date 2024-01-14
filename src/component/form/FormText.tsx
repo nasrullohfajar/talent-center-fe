@@ -1,7 +1,8 @@
 import React from 'react';
 import { Typography, TextField, FormControl } from '@mui/material';
+import { IFormInputProps } from 'types';
 
-const FormText = ({ label, name, value, onChange, error, multiline, type, inputProps }) => {
+const FormText = ({ label, name, value, onChange, error, multiline, type, inputProps }: IFormInputProps) => {
   return (
     <FormControl fullWidth size="small" sx={{ mt: 2 }}>
       <TextField
