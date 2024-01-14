@@ -20,7 +20,6 @@ const Landing = () => {
             backgroundImage: `url(${bgLanding})`,
             backgroundSize: 'cover',
             backgroundPosition: isMobile ? 'left center' : 'center',
-            minHeight: 'calc(100vh - 64px)', // fullscreen - navbar
           }}
         >
           <Content />

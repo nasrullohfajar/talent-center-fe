@@ -146,7 +146,7 @@ const NavbarLanding = () => {
           </Toolbar>
         </AppBar>
 
-        <ModalSignIn open={isModalSignInOpen} handleClose={changeModalSignInOpen} />
+        <ModalSignIn isOpen={isModalSignInOpen} handleClose={changeModalSignInOpen} />
         <ModalRegister open={isModalRegisterOpen} handleClose={changeModalRegisterOpen} />
       </Box>
     </>

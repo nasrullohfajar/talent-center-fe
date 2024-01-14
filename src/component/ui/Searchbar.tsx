@@ -1,9 +1,13 @@
-import React from 'react';
-import { TextField, InputAdornment, IconButton, Paper } from '@mui/material';
+import React, { ChangeEvent } from 'react';
+import { TextField, InputAdornment, IconButton, Paper, SxProps } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-const SearchBar = ({ sx }) => {
-  const handleSearch = (event) => {
+interface ISearchBarProps {
+  sx?: SxProps;
+}
+
+const SearchBar = ({ sx }: ISearchBarProps) => {
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     console.log('Search query:', event.target.value);
   };
 
