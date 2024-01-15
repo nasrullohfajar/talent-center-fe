@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Modal, Typography, Fade } from '@mui/material';
 import { useIsMobile } from 'utils/functions';
-import { ICustomAlertProps } from 'types';
+import { ICustomAlertProps } from 'component/modal/types';
 
 const CustomAlert = ({ open, type, message }: ICustomAlertProps) => {
   const [isOpen, setIsOpen] = useState(open);

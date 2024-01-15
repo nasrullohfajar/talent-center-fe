@@ -9,7 +9,8 @@ import GoogleIcon from '@mui/icons-material/Google';
 import FormText from 'component/form/FormText';
 import CustomAlert from 'component/modal/CustomAlert';
 import { useIsMobile } from 'utils/functions';
-import { IModalAuthProps, IFormAuthProps } from 'types';
+import { IModalAuthProps } from 'component/modal/types';
+import { IFormAuthProps } from 'component/form/types';
 
 const ModalSignIn = ({ isOpen, handleClose }: IModalAuthProps) => {
   const [showPassword, setShowPassword] = useState(false);

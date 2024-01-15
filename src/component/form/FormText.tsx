@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, TextField, FormControl } from '@mui/material';
-import { IFormInputProps } from 'types';
+import { IFormInputProps } from 'component/form/types';
 
 const FormText = ({ label, name, value, onChange, error, multiline, type, inputProps }: IFormInputProps) => {
   return (
