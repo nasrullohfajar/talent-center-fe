@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton, Drawer, List, ListItem, Box } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { IMobileMenuProps } from 'types';
+import { IMobileMenuProps } from 'component/layout/mobile/types';
 
 const MobileMenu = ({ isOpen, handleClose, anchor, paperProps, buttonTop, buttonBottom, sx }: IMobileMenuProps) => (
   <Drawer anchor={anchor} open={isOpen} onClose={handleClose} PaperProps={paperProps}>
