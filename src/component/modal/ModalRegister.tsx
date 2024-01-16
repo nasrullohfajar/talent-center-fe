@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent, ReactNode } from 'react';
 import axios from 'axios';
 import {
   Typography,
@@ -17,22 +17,24 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  SelectChangeEvent,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Visibility from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOff from '@mui/icons-material/VisibilityOffOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
+import PasswordValidation from 'component/ui/PasswordValidation';
+import FormText from 'component/form/FormText';
+import CustomAlert from 'component/modal/CustomAlert';
+import { useIsMobile } from 'utils/functions';
+import { IModalAuthProps } from 'component/modal/types';
+import { IFormRegisterProps } from 'component/form/types';
 
-import { useIsMobile } from '../../utils/functions';
-import PasswordValidation from '../ui/PasswordValidation';
-import FormText from '../form/FormText';
-import CustomAlert from './CustomAlert';
-
-const ModalRegister = ({ open, handleClose }) => {
+const ModalRegister = ({ isOpen, handleClose }: IModalAuthProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
-  const [errors, setErrors] = useState('');
-  const [formData, setFormData] = useState({
+  const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>({});
+  const [formData, setFormData] = useState<IFormRegisterProps>({
     firstName: '',
     lastName: '',
     email: '',
@@ -48,25 +50,16 @@ const ModalRegister = ({ open, handleClose }) => {
   const clientPositions = [{ value: '22900d4a-1e68-4d09-8ef4-eb99614907d5', label: 'HRD (Human Resources Director)' }];
 
   const handleTogglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+    setShowPassword(!showPassword);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    // //realtime validation
-    // if (name === 'firstname' && value.length > 3) {
-    //   setErrors({
-    //     ...errors,
-    //     [name]: lengthError,
-    //   });
-    //   return;
-    // }
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    const { name, value } = event.target;
 
     //reset error
-    if (errors[name]) {
-      setErrors({
-        ...errors,
+    if (errorMessage[name]) {
+      setErrorMessage({
+        ...errorMessage,
         [name]: '',
       });
     }
@@ -78,7 +71,7 @@ const ModalRegister = ({ open, handleClose }) => {
   };
 
   const validateForm = () => {
-    const formError = {};
+    const formError: { [key: string]: string } = {};
     const lengthError255 = 'Panjang kolom ini tidak boleh lebih dari 255';
     const lengthError100 = 'Panjang kolom ini tidak boleh lebih dari 100';
 
@@ -87,16 +80,18 @@ const ModalRegister = ({ open, handleClose }) => {
         formError[key] = 'Kolom ini tidak boleh kosong';
       }
 
-      if ((key === 'firstName' || key === 'lastName' || key === 'agencyAddress') && formData[key].length > 255) {
+      // Nullish check before accessing formData[key].length
+      if ((key === 'firstName' || key === 'lastName' || key === 'agencyAddress') && formData[key]?.length > 255) {
         formError[key] = lengthError255;
       }
 
-      if (key === 'agencyName' && formData[key].length > 100) {
+      // Nullish check before accessing formData[key].length
+      if (key === 'agencyName' && formData[key]?.length > 100) {
         formError[key] = lengthError100;
       }
     });
 
-    setErrors(formError);
+    setErrorMessage(formError);
     return Object.keys(formError).length === 0;
   };
 
@@ -134,17 +129,17 @@ const ModalRegister = ({ open, handleClose }) => {
   };
 
   useEffect(() => {
-    if (isAlert && open) {
+    if (isAlert && isOpen) {
       setIsAlert(false);
     }
-  }, [open, isAlert]);
+  }, [isOpen, isAlert]);
 
   return (
     <>
-      {isAlert && !open ? (
+      {isAlert && !isOpen ? (
         <CustomAlert type={'error'} message={'Sign In Gagal'} open={true} />
       ) : (
-        <Modal open={open} onClose={handleClose}>
+        <Modal open={isOpen} onClose={handleClose}>
           <Box
             sx={{
               position: 'absolute',
@@ -155,7 +150,7 @@ const ModalRegister = ({ open, handleClose }) => {
               padding: '20px',
               borderRadius: '8px',
               outline: 'none',
-              width: isMobile ? '260px' : '370px',
+              width: isMobile ? '350px' : '460px',
               p: '50px',
               overflow: 'scroll',
               height: '80%',
@@ -188,15 +183,15 @@ const ModalRegister = ({ open, handleClose }) => {
             >
               <Grid container spacing={2}>
                 <Grid item xs={6}>
-                  <FormText label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} error={errors.firstName} />
+                  <FormText label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} error={errorMessage.firstName} />
                 </Grid>
 
-                {/* <Grid item xs={6}>
-                  <FormText label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} error={errors.lastName} />
-                </Grid> */}
+                <Grid item xs={6}>
+                  <FormText label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} error={errorMessage.lastName} />
+                </Grid>
               </Grid>
 
-              <FormText label="Email" name="email" value={formData.email} onChange={handleChange} error={errors.email} />
+              <FormText label="Email" name="email" value={formData.email} onChange={handleChange} error={errorMessage.email} />
 
               <FormText
                 label="Password"
@@ -204,8 +199,8 @@ const ModalRegister = ({ open, handleClose }) => {
                 type={showPassword ? 'text' : 'password'}
                 value={formData.password}
                 onChange={handleChange}
-                error={errors.password}
-                InputProps={{
+                error={errorMessage.password}
+                inputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton onClick={handleTogglePasswordVisibility} edge="end">
@@ -224,8 +219,8 @@ const ModalRegister = ({ open, handleClose }) => {
                 type={showPassword ? 'text' : 'password'}
                 value={formData.password}
                 onChange={handleChange}
-                error={errors.password}
-                InputProps={{
+                error={errorMessage.password}
+                inputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton onClick={handleTogglePasswordVisibility} edge="end">
@@ -253,7 +248,7 @@ const ModalRegister = ({ open, handleClose }) => {
                   value={formData.clientPositionId}
                   onChange={handleChange}
                   label="Client Position"
-                  error={Boolean(errors.clientPositionId)}
+                  error={Boolean(errorMessage.clientPositionId)}
                 >
                   {clientPositions.map((position) => (
                     <MenuItem key={position.value} value={position.value}>
@@ -262,18 +257,18 @@ const ModalRegister = ({ open, handleClose }) => {
                   ))}
                 </Select>
                 <Typography variant="caption" color="error">
-                  {errors.clientPositionId}
+                  {errorMessage.clientPositionId}
                 </Typography>
               </FormControl>
 
-              <FormText label="Agency Name" name="agencyName" value={formData.agencyName} onChange={handleChange} error={errors.agencyName} />
+              <FormText label="Agency Name" name="agencyName" value={formData.agencyName} onChange={handleChange} error={errorMessage.agencyName} />
 
               <FormText
                 label="Agency Address"
                 name="agencyAddress"
                 value={formData.agencyAddress}
                 onChange={handleChange}
-                error={errors.agencyAddress}
+                error={errorMessage.agencyAddress}
                 multiline
               />
 
