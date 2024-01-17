@@ -29,15 +29,15 @@ const Main = () => {
           position: 'relative',
           minHeight: '100vh',
           bgcolor: '#fdfdfd',
-          // p: '100px 250px 30px', //detail, wistlist
+          p: '100px 250px 30px', //detail, wistlist
         }}
       >
         {/* Talent List */}
-        {!isMobile && <SidebarMain />}
-        <ContentMain talentData={talentData[0]} />
+        {/* {!isMobile && <SidebarMain />}
+        <ContentMain talentData={talentData[0]} /> */}
 
         {/* Talent Detail */}
-        {/* <CardTalentDetail talentData={talentData[0]} /> */}
+        <CardTalentDetail talentData={talentData[0]} />
 
         {/* Talent Wishlist */}
         {/* <CardTalentWishlist talentData={talentData[0]} /> */}
