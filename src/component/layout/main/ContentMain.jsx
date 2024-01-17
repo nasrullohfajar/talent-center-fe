@@ -59,15 +59,15 @@ const ContentMain = ({ talentData }) => {
         {talentData ? (
           <Grid container spacing={3}>
             <Grid item xs={isMobile ? 12 : 6}>
-              <CardTalent talentData={talentData[0]} />
+              <CardTalent talentData={talentData} />
             </Grid>
 
             <Grid item xs={isMobile ? 12 : 6}>
-              <CardTalent talentData={talentData[0]} />
+              <CardTalent talentData={talentData} />
             </Grid>
 
             <Grid item xs={isMobile ? 12 : 6}>
-              <CardTalent talentData={talentData[0]} />
+              <CardTalent talentData={talentData} />
             </Grid>
           </Grid>
         ) : (
