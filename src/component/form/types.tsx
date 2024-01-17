@@ -32,6 +32,7 @@ export interface IFormInputProps {
 }
 
 export interface IFilterSpecProps {
+  name?: string;
   spec: Array<{ value: string; label: string; isChecked?: boolean }>;
   sx?: SxProps;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
