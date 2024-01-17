@@ -27,7 +27,6 @@ const Main = () => {
       <Box
         sx={{
           position: 'relative',
-          boxSizing: 'border-box', //detail, wislist
           minHeight: '100vh',
           bgcolor: '#fdfdfd',
           p: '100px 250px 30px', //detail, wistlist

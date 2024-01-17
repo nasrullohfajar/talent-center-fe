@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Box, IconButton, Typography } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
 import FormCheckbox from 'component/form/FormCheckbox';
+import { IFilterSpecProps } from 'component/form/types';
 
-const FilterCheckbox = ({ name, spec }) => {
+const FilterCheckbox = ({ name, spec }: IFilterSpecProps) => {
   const [isShowFilter, setIsShowFilter] = useState(true);
 
   const handleOpenChange = () => {
@@ -26,7 +26,7 @@ const FilterCheckbox = ({ name, spec }) => {
             </IconButton>
           </Box>
 
-          <FormCheckbox list={spec} />
+          <FormCheckbox spec={spec} />
         </Box>
       ) : (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', borderBottom: '1px solid #DBDBDB', pb: '20px' }}>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useIsXl, useIsMobile } from 'utils/functions';
+import { ITagTalentProps } from 'component/ui/types';
 
-const TagTalent = ({ name, tag, max }) => {
+const TagTalent = ({ name, tag, max }: ITagTalentProps) => {
   const isXl = useIsXl();
   const isMobile = useIsMobile();
   const maxTagsToShow = max ? max : isXl ? 3 : 4;

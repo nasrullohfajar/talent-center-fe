@@ -1,7 +1,12 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-const EmptyData = ({ img, message }) => {
+interface IEmptyDataProps {
+  img: string;
+  message: string;
+}
+
+const EmptyData = ({ img, message }: IEmptyDataProps) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
       <img src={img} alt="Empty Data" style={{ width: '250px' }} />

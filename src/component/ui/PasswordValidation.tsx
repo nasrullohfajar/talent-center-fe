@@ -3,7 +3,11 @@ import { Box, Typography } from '@mui/material';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 
-const PasswordValidation = ({ password }) => {
+interface IPasspordValidationProps {
+  password: string;
+}
+
+const PasswordValidation = ({ password }: IPasspordValidationProps) => {
   const isLengthValid = password.length >= 8;
   const hasLetter = /[a-zA-Z]/.test(password);
   const hasNumber = /\d/.test(password);

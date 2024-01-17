@@ -1,15 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Button } from '@mui/material';
-import talent from 'assets/image/talent.jpg';
-import AvailableStatus from 'component/ui/AvailableStatus';
-import TagTalent from 'component/ui/TagTalent';
-import downloadCVBlue from 'assets/icon/downloadCVBlue.svg';
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import AvailableStatus from 'component/ui/AvailableStatus';
+import TagTalent from 'component/ui/TagTalent';
+import { ITalentDataProps } from 'component/layout/main/types';
+import talent from 'assets/image/talent.jpg';
+import downloadCVBlue from 'assets/icon/downloadCVBlue.svg';
 import { useIsXl, useIsMobile } from 'utils/functions';
 
-const CardTalent = ({ talentData }) => {
+const CardTalent = ({ talentData }: ITalentDataProps) => {
   const isXl = useIsXl();
   const isMobile = useIsMobile();
   const navigate = useNavigate();

@@ -5,16 +5,16 @@ const PaginationMain = () => {
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleChangePage = (newPage) => {
+  const handleChangePage = (event: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (newRowsPerPage) => {
+  const handleChangeRowsPerPage = (newRowsPerPage: number) => {
     setRowsPerPage(newRowsPerPage);
     setPage(1);
   };
 
-  //dummy data
+  // Dummy data
   const data = Array.from({ length: 25 }, (_, index) => `Item ${index + 1}`);
 
   return (
