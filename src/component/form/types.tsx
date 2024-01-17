@@ -1,5 +1,5 @@
-import React, { ChangeEvent, ReactNode } from 'react';
-import { InputProps, SelectChangeEvent } from '@mui/material';
+import React, { ChangeEvent } from 'react';
+import { InputProps, SxProps } from '@mui/material';
 
 export interface IFormAuthProps {
   email: string;
@@ -29,4 +29,14 @@ export interface IFormInputProps {
   multiline?: boolean;
   type?: string;
   inputProps?: InputProps;
+}
+
+type FilterSpec = {
+  value: string;
+  label: string;
+};
+
+export interface IFilterSpecProps {
+  spec: Array<{ value: string; label: string }>;
+  sx?: SxProps;
 }

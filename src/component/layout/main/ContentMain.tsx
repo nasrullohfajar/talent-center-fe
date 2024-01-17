@@ -7,8 +7,9 @@ import PaginationMain from './PaginationMain';
 import talentNotFound from 'assets/image/talentNotFound.png';
 import SearchBar from 'component/ui/Searchbar';
 import EmptyData from 'component/ui/EmptyData';
+import { ITalentDataProps } from 'component/layout/main/types';
 
-const ContentMain = ({ talentData }) => {
+const ContentMain = ({ talentData }: ITalentDataProps) => {
   const isMobile = useIsMobile();
 
   const filterSpec = [
@@ -75,7 +76,7 @@ const ContentMain = ({ talentData }) => {
         )}
       </Box>
 
-      {!isMobile && talentData.length > 0 && <PaginationMain />}
+      {!isMobile && talentData && <PaginationMain />}
     </Box>
   );
 };

@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import React, { useState, ChangeEvent } from 'react';
+import { Box, SelectChangeEvent } from '@mui/material';
 import { useIsXl, useIsMobile } from 'utils/functions';
+import { IFilterSpecProps } from 'component/form/types';
 
-const FormSelect = ({ spec, sx }) => {
+const FormSelect = ({ spec, sx }: IFilterSpecProps) => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const isXl = useIsXl();
   const isMobile = useIsMobile();
 
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
+    setSelectedOption(event.target.value as string);
   };
 
   return (
@@ -34,7 +35,7 @@ const FormSelect = ({ spec, sx }) => {
         </option>
 
         {spec.map((item) => (
-          <option key={item.value} value={item.value} style={{ color: 'black' }}>
+          <option key={item.value} value={item.value as string} style={{ color: 'black' }}>
             {item.label}
           </option>
         ))}
