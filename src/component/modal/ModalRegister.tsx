@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent, ReactNode } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   Typography,
@@ -34,6 +34,7 @@ const ModalRegister = ({ isOpen, handleClose }: IModalAuthProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>({});
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [formData, setFormData] = useState<IFormRegisterProps>({
     firstName: '',
     lastName: '',
@@ -56,7 +57,7 @@ const ModalRegister = ({ isOpen, handleClose }: IModalAuthProps) => {
   const handleChange = (event: SelectChangeEvent<string>) => {
     const { name, value } = event.target;
 
-    //reset error
+    // reset error
     if (errorMessage[name]) {
       setErrorMessage({
         ...errorMessage,
@@ -64,10 +65,14 @@ const ModalRegister = ({ isOpen, handleClose }: IModalAuthProps) => {
       });
     }
 
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    if (name === 'confirmPassword') {
+      setConfirmPassword(value);
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
   const validateForm = () => {
@@ -80,16 +85,18 @@ const ModalRegister = ({ isOpen, handleClose }: IModalAuthProps) => {
         formError[key] = 'Kolom ini tidak boleh kosong';
       }
 
-      // Nullish check before accessing formData[key].length
       if ((key === 'firstName' || key === 'lastName' || key === 'agencyAddress') && formData[key]?.length > 255) {
         formError[key] = lengthError255;
       }
 
-      // Nullish check before accessing formData[key].length
       if (key === 'agencyName' && formData[key]?.length > 100) {
         formError[key] = lengthError100;
       }
     });
+
+    if (formData.password !== confirmPassword) {
+      formError.confirmPassword = 'Password tidak cocok';
+    }
 
     setErrorMessage(formError);
     return Object.keys(formError).length === 0;
@@ -132,6 +139,23 @@ const ModalRegister = ({ isOpen, handleClose }: IModalAuthProps) => {
     if (isAlert && isOpen) {
       setIsAlert(false);
     }
+
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      sex: '',
+      birthdate: '1990-01-15',
+      clientPositionId: '',
+      agencyName: '',
+      agencyAddress: '',
+    });
+
+    setConfirmPassword('');
+    setErrorMessage({
+      key: '',
+    });
   }, [isOpen, isAlert]);
 
   return (
@@ -215,11 +239,11 @@ const ModalRegister = ({ isOpen, handleClose }: IModalAuthProps) => {
 
               <FormText
                 label="Type in your password again"
-                name="password"
+                name="confirmPassword"
                 type={showPassword ? 'text' : 'password'}
-                value={formData.password}
+                value={confirmPassword}
                 onChange={handleChange}
-                error={errorMessage.password}
+                error={errorMessage.confirmPassword}
                 inputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
