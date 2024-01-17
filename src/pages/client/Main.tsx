@@ -37,10 +37,10 @@ const Main = () => {
         <ContentMain talentData={talentData[0]} /> */}
 
         {/* Talent Detail */}
-        <CardTalentDetail talentData={talentData[0]} />
+        {/* <CardTalentDetail talentData={talentData[0]} /> */}
 
         {/* Talent Wishlist */}
-        {/* <CardTalentWishlist talentData={talentData[0]} /> */}
+        <CardTalentWishlist talentData={talentData[0]} />
 
         {/* Talent Requset */}
         {/* <CardTalentRequest talentData={talentData[0]} /> */}

@@ -1,17 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Button } from '@mui/material';
-import talent from 'assets/image/talent.jpg';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import AvailableStatus from 'component/ui/AvailableStatus';
 import TagTalent from 'component/ui/TagTalent';
-import downloadCVGray from 'assets/icon/downloadCVGray.svg';
-import trash from 'assets/icon/trash.svg';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useIsXl, useIsMobile } from 'utils/functions';
 import EmptyData from 'component/ui/EmptyData';
 import emptyDataWishlit from 'assets/image/emptyDataWishlist.png';
+import talent from 'assets/image/talent.jpg';
+import downloadCVGray from 'assets/icon/downloadCVGray.svg';
+import trash from 'assets/icon/trash.svg';
+import { useIsXl, useIsMobile } from 'utils/functions';
+import { ITalentDataProps } from 'component/layout/main/types';
 
-const CardTalentWishlist = ({ talentData }) => {
+const CardTalentWishlist = ({ talentData }: ITalentDataProps) => {
   const isXl = useIsXl();
   const isMobile = useIsMobile();
   const navigate = useNavigate();
