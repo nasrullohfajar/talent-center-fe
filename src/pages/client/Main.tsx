@@ -40,10 +40,10 @@ const Main = () => {
         {/* <CardTalentDetail talentData={talentData[0]} /> */}
 
         {/* Talent Wishlist */}
-        <CardTalentWishlist talentData={talentData[0]} />
+        {/* <CardTalentWishlist talentData={talentData[0]} /> */}
 
         {/* Talent Requset */}
-        {/* <CardTalentRequest talentData={talentData[0]} /> */}
+        <CardTalentRequest talentData={talentData[0]} />
       </Box>
     </Box>
   );

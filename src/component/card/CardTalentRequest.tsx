@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Button, Tabs, Tab } from '@mui/material';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import PropTypes from 'prop-types';
-import talent from 'assets/image/talent.jpg';
 import AvailableStatus from 'component/ui/AvailableStatus';
 import TagTalent from 'component/ui/TagTalent';
-import downloadCVGray from 'assets/icon/downloadCVGray.svg';
-import trash from 'assets/icon/trash.svg';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useIsXl, useIsMobile } from 'utils/functions';
 import EmptyData from 'component/ui/EmptyData';
+import talent from 'assets/image/talent.jpg';
+import downloadCVGray from 'assets/icon/downloadCVGray.svg';
+import { useIsXl, useIsMobile } from 'utils/functions';
 import emptyDataWishlit from 'assets/image/emptyDataWishlist.png';
-import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
+import { ITalentDataProps } from 'component/layout/main/types';
+import { ICustomTabPanelProps } from 'component/card/types';
 
-function CustomTabPanel(props) {
+function CustomTabPanel(props: ICustomTabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -33,17 +34,17 @@ CustomTabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-function a11yProps(index) {
+function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
-const CardTalentRequest = ({ talentData }) => {
+const CardTalentRequest = ({ talentData }: ITalentDataProps) => {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (event: any, newValue: number) => {
     setValue(newValue);
   };
 
