@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { TextField, InputAdornment, IconButton, Paper, SxProps } from '@mui/material';
+import { TextField, InputAdornment, IconButton, Paper, SxProps, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 interface ISearchBarProps {
@@ -12,10 +12,10 @@ const SearchBar = ({ sx }: ISearchBarProps) => {
   };
 
   return (
-    <Paper component="form" sx={{ display: 'flex', alignItems: 'center', ...sx }}>
+    <Box component="form" sx={{ display: 'flex', alignItems: 'center' }}>
       <TextField
         fullWidth
-        placeholder='   Try "Javascript"'
+        placeholder=' Try "Javascript" '
         variant="outlined"
         onChange={handleSearch}
         InputProps={{
@@ -26,9 +26,10 @@ const SearchBar = ({ sx }: ISearchBarProps) => {
               </IconButton>
             </InputAdornment>
           ),
+          sx: { borderRadius: '30px', background: 'white', pl: '20px', ...sx },
         }}
       />
-    </Paper>
+    </Box>
   );
 };
 
